@@ -1,0 +1,14 @@
+[{
+  "_id": {
+    "$oid": "a781a12d-cfa9-4cec-abc6-2a2a660cd2db"
+  },
+  "title": "Inseed",
+  "img": "/projects/inseed.png",
+  "date": "2024-09-04",
+  "tecnologies": [
+    "react", "TypeScript", "Postgres", "Astro"
+  ],
+  "url": "https://inseed-landing.vercel.app",
+  "description": "App de productividad para estudiantes que incluye un gestor de horarios, tareas. Desarrollada completamente por mí como desarrollador full stack, usando React, Vite, NestJS, Node.js y PostgreSQL. Diseñada para ser comercializada, con un enfoque en escalabilidad y rendimiento.",
+  "isDestacate": true
+}]

@@ -1,0 +1,120 @@
+---
+import Header from '../components/header/Header.astro'
+import Footer from '../components/footer/Footer.astro'
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favico/favico.svg" />
+		<meta name="google-site-verification" content="_7ZspclFZfSHb6DjqjqW-gGLQSemmqyegcperItAunM" />
+
+		<!-- Facebook Meta Tags -->
+		<meta property="og:url" content="https://portafolio-lake-sigma.vercel.app">
+		<meta property="og:type" content="website">
+		<meta property="og:title" content="Carlos Olcina Portfolio | Desarrollador Full Stack">
+		<meta property="og:description" content="Hola, soy Carlos Olcina, un desarrollador web full stack en crecimiento, comprometido con la creación de soluciones digitales innovadoras.Siempre en evolución, con una pasión constante por el aprendizaje.">
+		<meta property="og:image" content="../../public/preview.png">
+
+		<!-- Twitter Meta Tags -->
+		<meta property="twitter:domain" content="portafolio-lake-sigma.vercel.app">
+		<meta property="twitter:url" content="https://portafolio-lake-sigma.vercel.app">
+		<meta name="twitter:title" content="Carlos Olcina Portfolio">
+		<meta name="twitter:description" content="Hola, soy Carlos Olcina, un desarrollador web full stack en crecimiento, comprometido con la creación de soluciones digitales innovadoras.Siempre en evolución, con una pasión constante por el aprendizaje.">
+		<meta name="twitter:image" content="../../public/preview.png">
+
+		<meta name="generator" content={Astro.generator} />
+		<meta name="robots" content="index" />
+		<meta name="theme-color" content="#BB86FC"/>
+
+		<title>{title}</title>
+		<meta name="description" content="Hola, soy Carlos Olcina, un desarrollador web full stack en crecimiento, comprometido con la creación de soluciones digitales innovadoras.Siempre en evolución, con una pasión constante por el aprendizaje." />
+
+		
+	</head>
+	<body>
+		<Header/>
+		<main>
+			<slot />
+		</main>
+	<Footer/>
+	</body>
+</html>
+<style></style>
+<style is:global>
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kodchasan:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+	*{
+		margin: 0;
+		padding: 0;
+
+		color: #F0EDEE;
+		font-family: 'Inter', sans-serif;
+	}
+	html {
+    scroll-behavior: smooth;
+	}
+	body{
+		background: linear-gradient(#24112D, 7%, #322936, 50%, #1B161D);
+	}
+
+	main{
+		display: block;
+		width: 41.9%;
+		margin: 0 auto;
+	}
+
+	::-webkit-scrollbar{
+		width: 0.7vw;
+	}
+	::-webkit-scrollbar-track {
+    background: #262626;
+}
+	::-webkit-scrollbar-thumb{
+		border-radius: 5vh;
+		background-color: #BB86FC;
+	}
+
+	.pink{
+		color: #FFD1DC;
+	}
+	.green{
+		color:#98FF98;
+	}
+	strong{
+		font-weight: 300;
+	}
+	em{
+		font-style: normal;
+		font-weight: 300;
+
+	}
+
+	/* vista para movil pequeño, mediado y grande */
+	@media(max-width: 750px) {
+		main{
+			width: 80%;
+			overflow: hidden;
+		}
+		*{
+			font-size: 0.9rem;
+		}
+		.only-for-pc{
+			display: none;
+		}
+	}
+	@media(min-width: 751px){
+		.only-for-mobile{
+			display: none;
+		}
+	}
+
+
+</style>

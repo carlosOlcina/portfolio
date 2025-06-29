@@ -1,0 +1,121 @@
+---
+import email from '../../../public/email.svg?raw'
+import github from '../../../public/github.svg?raw'
+import fiverr from '../../../public/fiverr.svg?raw'
+import {ButtonOfEmail} from '../jsx/ButtonOfEmail'
+
+---
+<section class="presentation" id="presentation">
+  <header>
+    <h1>
+      Carlos Olcina
+      <span>Desarrollador <span class="full-stack">Full Stack</span></span>
+    </h1>
+  </header>
+  <p class="parraf-of-presentation">
+    Hola, soy Carlos Olcina, un <strong class="pink">desarrollador web full stack</strong> en crecimiento, <strong class="pink">comprometido con la creación de soluciones digitales innovadoras. </strong>Siempre en evolución, con una <span class="pink">pasión constante por el aprendizaje.</span>
+  </p>
+  <nav>
+    <ul class="contact">
+      <li class="button-of-contact">
+        <a href="https://github.com/carlosOlcina">
+          <span class="icon-of-contact"><Fragment set:html={github}/></span>
+          <span class="only-for-pc">GitHub</span>
+        </a>
+      </li>
+  
+      <ButtonOfEmail client:load>
+        <span class="icon-of-contact email"><Fragment set:html={email}/></span>
+        <span class="only-for-pc">carlosolcinadev@gmail.com</span>
+      </ButtonOfEmail>
+  
+      <li class="button-of-contact">
+        <a href="https://es.fiverr.com/carlos_olcina">
+          <span class="icon-of-contact"><Fragment set:html={fiverr}/></span>
+          <span class="only-for-pc">fiverr</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</section>
+
+<style is:global>
+
+  .presentation{
+    padding-top: 30vh;
+  }
+  h1{
+    margin-bottom: 1vh;
+  }
+
+  h1, h1>span, .full-stack{
+    font-family: 'Kodchasan', sans-serif;
+    font-size: 3.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+
+    color: #BB86FC;
+  }
+  h1>span, .full-stack{
+    font-size: 1.4rem;
+  }
+  h1>span{
+    display: block;
+    margin-top: -20px;
+  }
+  .parraf-of-presentation{
+    font-weight: 300;
+  }
+  .contact{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 4.5vh;
+  }
+
+  .button-of-contact{
+    padding: 1%;
+    border-radius: 30px;
+
+    list-style: none;
+    background-color: #262626;
+    text-align: center;
+    cursor: pointer;
+    transition: 200ms ease-in-out;
+  }
+  .button-of-contact>a{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+  .button-of-contact:hover{
+    scale:1.1;
+  }
+  .icon-of-contact{
+    display: block;
+    width: 24px;
+    height: 24px;
+    margin-right: 4px !important;
+  }
+
+  @media(max-width:750px){
+    .presentation{
+      padding-top: 23vh;
+    }
+    h1{
+      font-size: 3.1rem;
+      line-height: 5.5vh;
+    }
+    h1>span{
+      display: block;
+      margin-top: -9px;
+      font-size: 1.3rem;
+    }
+    .full-stack{
+      display: block;
+      font-size: 1.3rem;
+      margin-top: -21px;
+    }
+  }
+</style>

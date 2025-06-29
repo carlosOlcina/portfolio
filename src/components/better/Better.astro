@@ -1,0 +1,31 @@
+---
+import arrowDown from '../../../public/arrowDown.svg?raw'
+---
+<a href="#title-for-me" class="read-better">
+  Ver más
+  <Fragment set:html={arrowDown}/>
+</a>
+
+<style>
+  .read-better{
+    position: absolute;
+    bottom: 2%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: flex;
+    align-items: center;
+
+    padding: 1.2vh;
+    text-decoration: none;
+
+    background-color: #262626;
+    border-radius: 4svh;
+
+    transition: scale 200ms linear;
+  }
+  .read-better:hover{
+    scale:1.05;
+  }
+  
+</style>

@@ -1,0 +1,95 @@
+---
+// import menu from '../../public/menu.svg?raw'
+
+
+---
+<header class="header-container">
+  <nav class="nav-header">
+    <ul class="button-list">
+    <li class="button name-button"><a href="#presentation">CO</a></li>
+    <li class="button"><a href="#title-for-me">Sobre mí</a></li>
+    <li class="button"><a href="#title-experiencie">Experiencia</a></li>
+    <li class="button"><a href="#title-KnowLedge">Conocimiento</a></li>
+    <li class="button"><a href="#title-featured-proyects">Proyectos</a></li>
+    <!-- <li class="button menu-for-mobile"><label for="menu"><Fragment set:html={menu}/></label></li> -->
+    </ul>
+  </nav>
+</header>
+
+<style>
+  .header-container{
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    width: 100%;
+    background-color: transparent;
+    backdrop-filter: blur(1px);
+    z-index: 1;
+  }
+  .nav-header{
+    width: 41.9%;
+  }
+  .button-list{
+    margin-top: 2vh;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .button{
+    display: flex;
+    align-items: center;
+    list-style: none;
+    cursor: pointer;
+  }
+  .button>a{
+    font-size: 1.06rem;
+    font-weight: 700;
+    padding: 1vh;
+    text-decoration: none;
+    transition: 200ms ease-in-out;
+  }
+  .button:hover a{
+    scale: 1.1;
+    color: #BB86FC;
+  }
+  .name-button>a{
+    flex: 1 1 auto;
+    font-size: 1.8rem;
+    font-family: 'Kodchasan', sans-serif;
+    color: #BB86FC;
+    box-sizing: border-box;
+  }
+  .name-button{
+    margin-right: 3%;
+  }
+  /* .menu-for-mobile{
+    display: none;
+  } */
+  #menu{
+    display: none;
+  }
+
+  	/* vista para movil pequeño, mediado y grande */
+	@media(max-width: 750px) {
+    .button-list{
+      width: 80%;
+      justify-content: center;
+    }
+    .button{
+      display: none;
+    }
+    .name-button{
+      display: flex;
+    }
+    /* .menu-for-mobile{
+      display: flex;
+    } */
+    .button>a{
+      padding: 0;
+    }
+    .view{
+      display: flex;
+    }
+  }
+</style>

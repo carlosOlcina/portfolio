@@ -1,0 +1,125 @@
+---
+import knowledges from '../../data/knwoledges.json'
+import open from '../../../public/open.svg?raw'
+
+---
+<section class="KnowLedge">
+  <header>
+    <h2 id="title-KnowLedge">Conocimiento</h2>
+  </header>
+  <div class="container-of-knowledges">
+    {
+      knowledges.map((knowledge, i)=>(
+        <div class="square">
+          <input type="checkbox" id={`toggle${i}`} class="toggle" />
+          <label for={`toggle${i}`} class="toggle-label">
+            {/* contiene los titulos de los conocimientos */}
+            <div class="container-of-title-knowledge">
+              <h3 class="title-of-knowledge" style={`color:${knowledge.colorOfTitle}`}>
+                {knowledge.title}
+              </h3>  
+              <span class="only-for-mobile open-knowledges"><Fragment set:html={open} fill="lsadi"/></span>
+            </div>
+            {/* mapea los svgs de los conocimientos */}
+          <div class="container-of-svgs">
+
+            {knowledge.tecnologies.map(tecnologie=>(
+              <span class="svg-of-tecnologies">
+                <Fragment set:html={tecnologie.logo}/>
+              </span>
+            ))}
+          </div>
+          </label>
+        </div> 
+      ))
+    }  
+  </div>
+</section>
+
+
+<style>
+  .KnowLedge{
+    margin-top: 20vh;
+    margin-bottom: 20vh;
+  }
+  #title-KnowLedge{
+    font-size: 1.7rem;
+    font-weight:600;
+    padding-bottom: 1.7vh;
+  }
+  .container-of-knowledges{
+    display: grid;
+    grid-template-columns: repeat(2, 48%);
+    justify-content: center;
+    gap:4vh 4%;
+  }
+  .title-of-knowledge{
+    font-size: 2rem;
+    padding: 2vh 0 2vh; 
+    text-align: center;
+    width: auto;
+  }
+  .container-of-title-knowledge{
+    display: flex;
+    justify-content: center;
+  }
+  .square{
+    height: 30vw;
+    background-color: #262626;
+    border-radius: 3vh;
+
+    box-sizing: border-box;
+  }
+  .container-of-svgs{
+    display: grid;
+    place-items: center;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .svg-of-tecnologies{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1vh
+  }
+  .toggle{
+      display: none;
+    }
+  @media(max-width:750px){
+    .square{
+      height: auto;
+      width: auto;
+    }
+    .container-of-svgs{
+      display: none;
+    }
+
+    .title-of-knowledge{
+    font-size: 1.4rem;
+    }
+    .container-of-knowledges{
+      display: flex;
+      flex-direction: column;
+    }
+    .svg-of-tecnologies{
+      width: 17vw;
+    }
+    .container-of-title-knowledge{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+    .open-knowledges{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: auto;
+      transition: transform 200ms ease-in-out;
+    }
+    .toggle:checked ~ .toggle-label>.container-of-svgs{
+      display: grid;
+    }
+    .toggle:checked ~ .toggle-label>.container-of-title-knowledge>.open-knowledges{
+      transform: rotate(180deg);
+    }
+  }
+</style>

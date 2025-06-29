@@ -1,0 +1,19 @@
+{
+  "name": "fronted",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/preact": "^4.0.2",
+    "@astrojs/vercel": "^8.2.0",
+    "astro": "^5.1.7",
+    "preact": "^10.25.4",
+    "typescript": "^5.7.3"
+  }
+}

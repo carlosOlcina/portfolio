@@ -1,0 +1,114 @@
+---
+import  projects  from "../../data/projects.json";
+import {Image} from "astro:assets";
+
+---
+<section class="featured-projects">
+  <h2 id="title-featured-projects">Proyectos destacados</h2>
+  <div class="container-of-projects">
+    {
+      projects.map((project, i)=>(
+        <article 
+        class={`project-square ${ i === 0 ? 'principal-project' : 'secondarys-projects'}`} 
+        onclick={`window.open('${project.url}')`}
+        >
+          <div class="container-of-project-images">
+            <Image
+              width={500}
+              height={500}
+              src={project.img}
+              alt={project.title} 
+              loading="lazy"
+              class='project-image'
+            />
+          </div>
+          <main class="container-of-content">
+            <h3 class="title-of-project">{project.title}</h3>
+            <p class="description-of-project">{project.description}</p>
+          </main>
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .featured-projects{
+    margin-bottom: 30vh;
+  }
+  #title-featured-projects{
+    font-size: 1.7rem;
+    font-weight:600;
+    padding-bottom: 1.7vh;
+  }
+  .container-of-projects{
+    display: grid;
+    grid-template-columns: 48% 4% 48%;
+  }
+  .project-square{
+    background-color: #262626;
+    height: 25vw;
+    cursor:pointer;
+
+    border-radius: 3vh;
+  }
+  .principal-project{
+    grid-column-start: 1;
+    grid-column-end: 4;
+  }
+  .secondarys-projects{
+    margin-top: 3vh;
+  }
+  .secondarys-projects:nth-child(3n){
+    grid-column-start: 3;
+    grid-column-end: 4;
+  }
+  .container-of-project-images{
+    width: 100%;
+    height: 60%;
+    border-radius: 3vh;
+    overflow: hidden;
+  }
+  .project-image{
+    width:auto;
+    height: 25vw;
+  }
+  .container-of-content{
+    width: 100%;
+    height: 35%;
+    overflow: hidden;
+    padding: 1vh 3vh 6vh 3vh;
+
+    box-sizing: border-box;
+  }
+  .description-of-project{
+    display: block;
+  }
+  @media(max-width:750px){
+    .description-of-project{
+      display: none;
+    }
+    .container-of-projects{
+      display: block;
+    }
+    .project-square{
+      display: flex;
+      flex-direction: column-reverse;
+      background-color: #262626;
+      height: auto;
+
+      border-radius: 3vh;
+    }
+    .project-image{
+      width: 100%;
+      height: auto;
+    }
+    .container-of-content{
+      height: auto;
+      padding: 1vh 3vh 2vh 1vh;
+      text-align: center;
+
+      box-sizing: border-box;
+    }
+  }
+</style>

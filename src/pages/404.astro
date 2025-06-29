@@ -1,0 +1,26 @@
+---
+import Layout from "../layouts/Layout.astro"
+---
+
+<Layout title="Carlos Olcina | 404">
+  <div class="not-found-message">
+    <h1>404</h1>
+    <h2>pagina no encontrada</h2>
+    <a class="go-to-init" href="/">volver al inicio</a>
+  </div>
+</Layout>
+
+<style>
+  .not-found-message{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 87vh;
+  }
+  .go-to-init{
+    margin-top: 1vh;
+    text-decoration: none;
+    color: #FFD1DC;
+  }
+</style>
