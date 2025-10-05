@@ -8,8 +8,8 @@ import {Image} from "astro:assets";
   <div class="container-of-projects">
     {
       projects.map((project, i)=>(
-        <article 
-        class={`project-square ${ i === 0 ? 'principal-project' : 'secondarys-projects'}`} 
+        <article
+        class={`project-square ${ i === 0 ? 'principal-project' : 'secondarys-projects'}`}
         onclick={`window.open('${project.url}')`}
         >
           <div class="container-of-project-images">
@@ -17,7 +17,7 @@ import {Image} from "astro:assets";
               width={500}
               height={500}
               src={project.img}
-              alt={project.title} 
+              alt={project.title}
               loading="lazy"
               class='project-image'
             />
@@ -47,10 +47,10 @@ import {Image} from "astro:assets";
   }
   .project-square{
     background-color: #262626;
-    height: 25vw;
+    height: 25rem;
     cursor:pointer;
 
-    border-radius: 3vh;
+    border-radius: 1.5rem;
   }
   .principal-project{
     grid-column-start: 1;
@@ -66,18 +66,18 @@ import {Image} from "astro:assets";
   .container-of-project-images{
     width: 100%;
     height: 60%;
-    border-radius: 3vh;
+    border-radius: 1.5rem 1.5rem 0 0;
     overflow: hidden;
   }
   .project-image{
-    width:auto;
-    height: 25vw;
+    width:100%;
+    height: auto;
   }
   .container-of-content{
     width: 100%;
     height: 35%;
     overflow: hidden;
-    padding: 1vh 3vh 6vh 3vh;
+    padding: 1.5rem 2rem 1.5rem;
 
     box-sizing: border-box;
   }
