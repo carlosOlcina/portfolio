@@ -1,7 +1,5 @@
 [{
-  "_id": {
-    "$oid": "a781a12d-cfa9-4cec-abc6-2a2a660cd2db"
-  },
+  "id": "a781a12d-cfa9-4cec-abc6-2a2a660cd2db",
   "title": "Inseed",
   "img": "/projects/inseed.png",
   "date": "2024-09-04",
