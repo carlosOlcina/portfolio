@@ -1,3 +1,8 @@
+---
+import "../styles/reset.css"
+
+---
+
 <!doctype html>
 <html lang="en">
 	<head>
@@ -7,13 +12,13 @@
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Astro Basics</title>
+
+		<link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap" rel="stylesheet">
 	</head>
 	<body>
 		<slot />
 	</body>
 </html>
-
-<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap">
 
 <style>
 	html,
