@@ -1,0 +1,91 @@
+---
+import Icon from "../atoms/Icon.astro";
+import Text from "../atoms/Text.astro";
+
+interface Props {
+  platform: string;
+  url: string;
+  variant?: 'pill' | 'icon';
+  class?: string;
+  showLabel?: boolean;
+}
+
+const { 
+  platform, 
+  url, 
+  variant = 'pill', 
+  class: className,
+  showLabel = true 
+} = Astro.props;
+---
+
+<a 
+  href={url} 
+  target="_blank" 
+  rel="noopener noreferrer"
+  class:list={[
+    'social-link', 
+    `social-link--${variant}`, 
+    className
+  ]}
+  aria-label={`Seguir en ${platform}`}
+>
+  <div class="social-link__icon-wrapper">
+    <Icon size={variant === 'pill' ? 18 : 24}>
+      <slot name="icon" />
+    </Icon>
+  </div>
+  
+  {variant === 'pill' && showLabel && (
+    <Text as="span" size="sm" weight="medium" color="neutral-9" class="social-link__label">
+      {platform}
+    </Text>
+  )}
+</a>
+
+<style>
+  .social-link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+    color: #333333; /* neutral-9 */
+  }
+
+  /* Variante Pill (con fondo gris y borde redondeado) */
+  .social-link--pill {
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: #F5F5F5; /* neutral-1.5 aproximado para sutileza */
+    border-radius: 9999px;
+    border: 1px solid #E7E7E7; /* neutral-2 */
+  }
+
+  .social-link--pill:hover {
+    background-color: #E7E7E7; /* neutral-2 */
+    transform: translateY(-2px);
+  }
+
+  /* Variante Icon (solo el icono circular o simple) */
+  .social-link--icon {
+    padding: 0.5rem;
+    border-radius: 50%;
+    justify-content: center;
+  }
+
+  .social-link--icon:hover {
+    background-color: #F5F5F5;
+    color: #000000;
+    transform: scale(1.1);
+  }
+
+  .social-link__icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .social-link__label {
+    line-height: 1;
+  }
+</style>
