@@ -1,0 +1,50 @@
+---
+interface Props {
+  variant?: 'dark' | 'light' | 'outline';
+  class?: string;
+}
+
+const { 
+  variant = 'dark', 
+  class: className 
+} = Astro.props;
+---
+
+<span class:list={['badge', `badge--${variant}`, className]}>
+  <slot />
+</span>
+
+<style>
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.2;
+    white-space: nowrap;
+    transition: all 0.2s ease-in-out;
+    border: 1px solid transparent;
+  }
+
+  /* Variante Dark (Fondo negro, texto blanco - como se ve en el diseño) */
+  .badge--dark {
+    background-color: #262626; /* neutral-10 */
+    color: #FFFFFF; /* neutral-1 */
+  }
+
+  /* Variante Light (Fondo gris claro) */
+  .badge--light {
+    background-color: #E7E7E7; /* neutral-2 */
+    color: #333333; /* neutral-9 */
+  }
+
+  /* Variante Outline */
+  .badge--outline {
+    background-color: transparent;
+    border-color: #D1D1D1; /* neutral-3 */
+    color: #5D5D5D; /* neutral-6 */
+  }
+</style>

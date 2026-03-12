@@ -1,0 +1,93 @@
+---
+interface Props {
+  href?: string;
+  label: string;
+  variant?: 'primary' | 'outline' | 'ghost';
+  class?: string;
+  target?: '_blank' | '_self';
+  width?: string;
+  height?: string;
+  fontSize?: string;
+  fontFamily?: 'clash' | 'mono';
+}
+
+const { 
+  href, 
+  label, 
+  variant = 'outline', 
+  class: className,
+  target = '_self',
+  width = '294px',
+  height = '64px',
+  fontSize = '24px',
+  fontFamily = 'mono'
+} = Astro.props;
+
+const Element = href ? 'a' : 'button';
+---
+
+<Element 
+  href={href} 
+  target={href ? target : undefined}
+  class:list={[
+    'button', 
+    `button--${variant}`, 
+    `font-${fontFamily}`,
+    className
+  ]}
+  style={{ width, height, fontSize }}
+>
+  <span class="button__icon">
+    <slot name="icon" />
+  </span>
+  <span class="button__label">{label}</span>
+</Element>
+
+<style>
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    border-radius: 70px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    border: 1px solid var(--black);
+    background-color: var(--white);
+    color: var(--black);
+    padding: 0; /* width and height handled by style */
+  }
+
+  .font-mono {
+    font-family: var(--font-mono);
+    font-weight: 500;
+  }
+
+  .font-clash {
+    font-family: var(--font-clash);
+    font-weight: 500;
+  }
+
+  .button:hover {
+    opacity: 0.8;
+    transform: scale(1.02);
+  }
+
+  .button__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .button__label {
+    line-height: 1;
+  }
+
+  @media (max-width: 768px) {
+    .button {
+      width: 100% !important;
+      max-width: 294px;
+    }
+  }
+</style>

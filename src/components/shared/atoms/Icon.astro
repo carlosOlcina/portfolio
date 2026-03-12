@@ -1,0 +1,40 @@
+---
+interface Props {
+  size?: number | string;
+  color?: string;
+  class?: string;
+}
+
+const { 
+  size = 24, 
+  color = 'currentColor', 
+  class: className 
+} = Astro.props;
+
+// Convertir size a un valor de píxeles si es un número, o usar el string tal cual (rem, em, etc.)
+const iconSize = typeof size === 'number' ? `${size}px` : size;
+---
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width={iconSize}
+  height={iconSize}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke={color}
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class:list={['icon', className]}
+  aria-hidden="true"
+>
+  <slot />
+</svg>
+
+<style>
+  .icon {
+    display: inline-block;
+    vertical-align: middle;
+    transition: stroke 0.2s ease-in-out;
+  }
+</style>
