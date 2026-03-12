@@ -1,0 +1,101 @@
+---
+import "../styles/reset.css";
+import "../styles/variables.css";
+import Header from "../components/features/Header.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  lang?: string;
+}
+
+const { 
+  title = "Carlos Olcina | Portfolio", 
+  description = "Diseñador y Desarrollador Frontend especializado en interfaces modernas y funcionales.",
+  lang = "es" 
+} = Astro.props;
+
+// Nav items for the Header
+const navItems = [
+  { label: 'Sobre mí', href: '#about' },
+  { label: 'Proyectos', href: '#projects' },
+  { label: 'Contacto', href: '#contact' },
+];
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+
+    <!-- Google Fonts: Clash Display (o similar via Fontshare API) -->
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <Header navItems={navItems}>
+      <!-- Opcional: Slot para un CTA específico en el header si fuera necesario -->
+    </Header>
+    
+    <main id="main-content">
+      <slot />
+    </main>
+
+    <style is:global>
+      html {
+        scroll-behavior: smooth;
+        background-color: var(--neutral-1);
+        color: var(--neutral-10);
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: var(--font-family-base);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        overflow-x: hidden;
+      }
+
+      /* Gradiente de fondo sutil inspirado en el diseño original */
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: 
+          radial-gradient(circle at 10% 20%, rgba(52, 199, 89, 0.05) 0%, transparent 40%),
+          radial-gradient(circle at 90% 80%, rgba(0, 195, 208, 0.05) 0%, transparent 40%);
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      *, *::before, *::after {
+        box-sizing: border-box;
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        margin: 0;
+        font-weight: 700;
+        line-height: 1.1;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+    </style>
+  </body>
+</html>

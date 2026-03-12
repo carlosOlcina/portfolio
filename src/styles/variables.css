@@ -1,0 +1,24 @@
+:root {
+  /* Brand Colors */
+  --color-green: #34C759;
+  --color-blue: #00C3D0;
+
+  /* Neutral Palette */
+  --neutral-1: #FFFFFF;
+  --neutral-2: #E7E7E7;
+  --neutral-3: #D1D1D1;
+  --neutral-4: #B0B0B0;
+  --neutral-5: #6D6D6D;
+  --neutral-6: #5D5D5D;
+  --neutral-7: #4F4F4F;
+  --neutral-8: #454545;
+  --neutral-9: #333333;
+  --neutral-10: #262626;
+
+  /* Design Tokens - Typography */
+  --font-family-base: 'Clash Display', sans-serif;
+  
+  /* Design Tokens - Transitions */
+  --transition-fast: 0.2s ease-in-out;
+  --transition-medium: 0.3s ease-in-out;
+}
