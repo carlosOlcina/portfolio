@@ -1,10 +1,12 @@
 ---
+import type { AstroComponent } from "@lucide/astro/src/types";
 import Icon from "../atoms/Icon.astro";
 import Text from "../atoms/Text.astro";
 
 interface Props {
   platform: string;
   url: string;
+  icon?: AstroComponent;
   variant?: 'pill' | 'icon';
   class?: string;
   showLabel?: boolean;
@@ -13,6 +15,7 @@ interface Props {
 const { 
   platform, 
   url, 
+  icon,
   variant = 'pill', 
   class: className,
   showLabel = true 
@@ -31,7 +34,7 @@ const {
   aria-label={`Seguir en ${platform}`}
 >
   <div class="social-link__icon-wrapper">
-    <Icon size={variant === 'pill' ? 18 : 24}>
+    <Icon icon={icon} size={variant === 'pill' ? 18 : 24}>
       <slot name="icon" />
     </Icon>
   </div>

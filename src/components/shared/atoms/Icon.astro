@@ -1,35 +1,51 @@
 ---
+import type {AstroComponent} from "@lucide/astro";
+
 interface Props {
+  icon?: AstroComponent;
   size?: number | string;
   color?: string;
   class?: string;
+  strokeWidth?: number;
 }
 
 const { 
+  icon: IconComponent,
   size = 24, 
   color = 'currentColor', 
-  class: className 
+  class: className,
+  strokeWidth = 2
 } = Astro.props;
 
-// Convertir size a un valor de píxeles si es un número, o usar el string tal cual (rem, em, etc.)
+// Convertir size a un valor numérico para Lucide si es posible
+const numericSize = typeof size === 'number' ? size : parseInt(size.toString());
 const iconSize = typeof size === 'number' ? `${size}px` : size;
 ---
 
-<svg
-  xmlns="http://www.w3.org/2000/svg"
-  width={iconSize}
-  height={iconSize}
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke={color}
-  stroke-width="2"
-  stroke-linecap="round"
-  stroke-linejoin="round"
-  class:list={['icon', className]}
-  aria-hidden="true"
->
-  <slot />
-</svg>
+{IconComponent ? (
+  <IconComponent 
+    size={numericSize} 
+    color={color} 
+    stroke-width={strokeWidth}
+    class:list={['icon', className]}
+  />
+) : (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={iconSize}
+    height={iconSize}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke={color}
+    stroke-width={strokeWidth}
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    class:list={['icon', className]}
+    aria-hidden="true"
+  >
+    <slot />
+  </svg>
+)}
 
 <style>
   .icon {
