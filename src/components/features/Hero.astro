@@ -33,8 +33,8 @@ import { Mail, Twitter, Instagram } from "@lucide/astro";
 
     <div class="hero-content">
       <h1 class="hero-title">
-        Tu web lista en <span class="highlight">días</span><br />
-        resultados en el primer <span class="highlight">clic</span>
+        <span>Tu web lista en</span> <span class="highlight">días</span><br />
+        <span>resultados en el primer</span> <span class="highlight">clic</span>
       </h1>
       
       <p class="hero-subtitle">
@@ -127,16 +127,16 @@ import { Mail, Twitter, Instagram } from "@lucide/astro";
   }
 
   .hero-title {
-    font-family: var(--font-clash);
+    margin-bottom: 15px;
+  }
+  .hero-title span{
     font-size: 60px;
-    font-weight: 700;
+    font-weight: 500;
     line-height: 1.2;
     letter-spacing: 3px;
-    margin-bottom: 30px;
   }
 
   .hero-subtitle {
-    font-family: var(--font-clash);
     font-size: 16px;
     font-weight: 500;
     max-width: 586px;
