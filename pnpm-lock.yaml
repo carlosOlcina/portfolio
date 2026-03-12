@@ -14,6 +14,9 @@ importers:
       '@astrojs/vercel':
         specifier: ^9.0.4
         version: 9.0.4(astro@5.17.3(@vercel/functions@2.2.13)(rollup@4.58.0)(typescript@5.9.3))(rollup@4.58.0)(svelte@5.53.5)
+      '@lucide/astro':
+        specifier: ^0.577.0
+        version: 0.577.0(astro@5.17.3(@vercel/functions@2.2.13)(rollup@4.58.0)(typescript@5.9.3))
       astro:
         specifier: ^5.17.1
         version: 5.17.3(@vercel/functions@2.2.13)(rollup@4.58.0)(typescript@5.9.3)
@@ -552,6 +555,11 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
+
+  '@lucide/astro@0.577.0':
+    resolution: {integrity: sha512-xZcdx+MyYXY74cBzFxr9N49SlofbGjCVD9GxJZcJA40PJvJSLWSeJpD9bgKFcZfFxf1QXkEYaR6BnCS+0lek8Q==}
+    peerDependencies:
+      astro: ^4 || ^5
 
   '@mapbox/node-pre-gyp@2.0.3':
     resolution: {integrity: sha512-uwPAhccfFJlsfCxMYTwOdVfOz3xqyj8xYL3zJj8f0pb30tLohnnFPhLuqp4/qoEz8sNxe4SESZedcBojRefIzg==}
@@ -2408,6 +2416,10 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
+
+  '@lucide/astro@0.577.0(astro@5.17.3(@vercel/functions@2.2.13)(rollup@4.58.0)(typescript@5.9.3))':
+    dependencies:
+      astro: 5.17.3(@vercel/functions@2.2.13)(rollup@4.58.0)(typescript@5.9.3)
 
   '@mapbox/node-pre-gyp@2.0.3':
     dependencies:
