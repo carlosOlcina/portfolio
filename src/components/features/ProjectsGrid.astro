@@ -1,0 +1,111 @@
+---
+import ProjectCard from "../shared/molecules/ProjectCard.astro";
+
+const projects = [
+  {
+    title: "Project 1",
+    category: "Web Development",
+    image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&q=80&w=1000",
+    rotated: false
+  },
+  {
+    title: "Optihome",
+    category: "Proyecto de clase",
+    image: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&q=80&w=1000",
+    rotated: true
+  }
+];
+---
+
+<section id="projects" class="projects">
+  <div class="container">
+    <div class="projects-content">
+      <h2 class="projects-title">Descubre los proyectos que ya están generando resultados</h2>
+      
+      <div class="projects-grid">
+        <div class="projects-bg-decoration"></div>
+        {projects.map((project) => (
+          <ProjectCard 
+            title={project.title}
+            category={project.category}
+            image={project.image}
+            rotated={project.rotated}
+          />
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .projects {
+    background-color: var(--dark-bg);
+    padding: 64px 0;
+    border-radius: 50px;
+    margin: 0 42px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .projects-title {
+    font-family: var(--font-clash);
+    font-size: 48px;
+    font-weight: 600; /* Semibold */
+    color: var(--white);
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 80px;
+  }
+
+  .projects-grid {
+    display: flex;
+    justify-content: center;
+    gap: 33px;
+    flex-wrap: wrap;
+    position: relative;
+    padding-bottom: 57px;
+  }
+
+  .projects-bg-decoration {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1000px;
+    height: 600px;
+    background: radial-gradient(circle, var(--accent-start) 0%, var(--accent-end) 100%);
+    filter: blur(150px);
+    opacity: 0.15;
+    transform: translate(-50%, -50%) rotate(155deg);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* Ensure cards are above decoration */
+  :global(.project-card) {
+    z-index: 1;
+  }
+
+  @media (max-width: 1200px) {
+    .projects {
+      margin: 0 20px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .projects {
+      padding: 40px 0;
+      border-radius: 30px;
+      margin: 0 10px;
+    }
+    .projects-title {
+      font-size: 32px;
+      margin-bottom: 40px;
+      padding: 0 20px;
+    }
+    .projects-grid {
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+    }
+  }
+</style>
