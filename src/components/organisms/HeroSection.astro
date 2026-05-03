@@ -1,0 +1,57 @@
+---
+import { Mail } from "@lucide/astro";
+import Button from "../atoms/Button.astro";
+import Gradient from "../atoms/Gradient.astro";
+import Paragraph from "../atoms/Paragraph.astro";
+import Title1 from "../atoms/Title1.astro";
+import SocialMediaNavbar from "../molecules/SocialMediaNavbar.astro";
+import heroSectionText from "../../data/heroSectionTexts";
+import SectionContainer from "../molecules/SectionContainer.astro";
+
+const titleTexts = [
+  {
+    text: heroSectionText["title-line-1"],
+    highlight: heroSectionText["title-line-1-highlight"],
+  },
+  {
+    text: heroSectionText["title-line-2"],
+    highlight: heroSectionText["title-line-2-highlight"],
+  }
+]
+---
+<SectionContainer type="gradient">
+  <div class="grid-wrapper">
+    <div class="title">
+      <Title1 texts={titleTexts}></Title1>
+    </div>
+    
+    <div class="social-media-navbar">
+      <SocialMediaNavbar></SocialMediaNavbar>
+    </div>
+
+    <div style="width: 60%;">
+      <Paragraph text={heroSectionText["subtitle"]}></Paragraph>
+    </div>
+    
+
+    <div style="width: fit-content; align-self: end;">
+      <Button text={heroSectionText["contact-button"]} Icon={Mail} size="large"/>
+    </div>
+  </div>
+</SectionContainer>
+
+<style>
+  .grid-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    gap: 2rem 10rem;
+  }
+
+  .title {
+    grid-column: 1 / -1;
+  }
+  
+  .social-media-navbar {
+    grid-row: 2 / 4;
+  }
+</style>
