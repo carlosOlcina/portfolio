@@ -1,0 +1,86 @@
+---
+  import '../../styles/reset.css';
+  import '../../styles/variables.css';
+---
+
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@700,600,500,400&display=swap" rel="stylesheet">
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Carlos Olcina - Portfolio</title>
+	</head>
+	<body>
+		<header>
+			<p>Carlos Olcina</p>
+			<nav>
+				<ul>
+					<li>
+            <a href="#about-me">Sobre mi</a>
+          </li>
+          <li>
+            <a href="#projects">Proyectos</a>
+          </li>
+          <li>
+            <a href="#contact">Contacto</a>
+          </li>
+				</ul>
+			</nav>
+		</header>
+
+    <main>
+      <slot></slot>
+    </main>
+	</body>
+</html>
+
+<style is:global>
+  body {
+    font-family: 'Clash Display', sans-serif;
+  }
+
+  *{
+    color: var(--neutral-950);
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 3rem;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    backdrop-filter: blur(10px);
+  }
+
+  p {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  nav ul {
+    display: flex;
+    gap: 3rem;
+  }
+
+  a {
+    display: block;
+    
+    font-size: 1.1rem;
+    transition-property: color, scale;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
+  }
+  a:hover {
+    color: var(--primary-500);
+    scale: 1.1;
+  }
+</style>
