@@ -1,0 +1,38 @@
+---
+import Gradient from '../atoms/Gradient.astro';
+
+  interface Props {
+    type: "gradient" | "black";
+  }
+
+  const { type } = Astro.props;
+---
+<div class={`${type}-wrap`}>
+  <section class={type}>
+    <slot></slot>
+  </section>
+
+  <Gradient></Gradient>
+</div>
+
+<style>
+  section {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    padding: 6rem 10rem;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  .gradient-wrap {
+    position: relative;
+    overflow: hidden;
+  }
+  .gradient {
+    backdrop-filter: blur(100px);
+  }
+</style>
