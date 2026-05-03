@@ -1,0 +1,39 @@
+---
+import { Mail } from "@lucide/astro";
+import Instagram from "../../icons/Instagram.astro";
+import Twitter from "../../icons/Twitter.astro";
+
+---
+<div class="container">
+  <Instagram size='2rem'/>
+  <Twitter size='2rem'/>
+  <Mail size='2rem'/>
+  <div class="line"></div>
+</div>
+
+<style>
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+    width: fit-content;
+  }
+  
+  .container *{
+    transform: rotate(-90deg);
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .container *:hover {
+    transform: rotate(0deg);
+  }
+
+  .line{
+    width: 3px;
+    height: 2rem;
+    background-color: var(--neutral-950);
+    transform: rotate(180deg) !important;
+  }
+
+</style>
