@@ -1,0 +1,37 @@
+---
+  interface Props {
+    texts: {
+      text: string;
+      highlight?: string;
+    }[];
+  }
+
+  const {texts} = Astro.props;
+---
+
+<h1>
+  {texts.map((line) => (
+    <span>
+      {line.text}
+      {line.highlight && <strong>{line.highlight}</strong>}
+    </span>
+  ))}
+</h1>
+
+<style>
+  h1 {
+    display: flex;
+    flex-direction: column;
+  }
+  h1 span, h1 span strong {
+    font-size: 4rem;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: 2px;
+  }
+
+  strong{
+    color: var(--neutral-050);
+    background-color: var(--neutral-950);
+  }
+</style>
