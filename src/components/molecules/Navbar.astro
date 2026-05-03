@@ -1,0 +1,23 @@
+---
+import HeaderLink from "../atoms/HeaderLink.astro";
+
+import navigationItems from '../../data/navigationItems.ts';
+---
+<nav>
+  <ul>
+    {
+      navigationItems.map(item => (
+        <li>
+          <HeaderLink href={item.href}>{item.label}</HeaderLink>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<style>
+  nav ul {
+    display: flex;
+    gap: 3rem;
+  }
+</style>
