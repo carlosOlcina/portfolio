@@ -1,11 +1,12 @@
 ---
   import '../../styles/reset.css';
   import '../../styles/variables.css';
+import HeaderLink from '../atoms/HeaderLink.astro';
 ---
 
 <link href="https://api.fontshare.com/v2/css?f[]=clash-display@700,600,500,400&display=swap" rel="stylesheet">
 
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -20,13 +21,13 @@
 			<nav>
 				<ul>
 					<li>
-            <a href="#about-me">Sobre mi</a>
+            <HeaderLink href="#about-me">Inicio</HeaderLink>
           </li>
           <li>
-            <a href="#projects">Proyectos</a>
+            <HeaderLink href="#projects">Proyectos</HeaderLink>
           </li>
           <li>
-            <a href="#contact">Contacto</a>
+            <HeaderLink href="#contact">Contacto</HeaderLink>
           </li>
 				</ul>
 			</nav>
@@ -69,18 +70,5 @@
   nav ul {
     display: flex;
     gap: 3rem;
-  }
-
-  a {
-    display: block;
-    
-    font-size: 1.1rem;
-    transition-property: color, scale;
-    transition-duration: 0.2s;
-    transition-timing-function: ease-in-out;
-  }
-  a:hover {
-    color: var(--primary-500);
-    scale: 1.1;
   }
 </style>
