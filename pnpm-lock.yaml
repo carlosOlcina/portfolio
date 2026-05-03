@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@lucide/astro':
+        specifier: ^1.14.0
+        version: 1.14.0(astro@6.2.1(rollup@4.60.2))
       astro:
         specifier: ^6.2.1
         version: 6.2.1(rollup@4.60.2)
@@ -374,6 +377,11 @@ packages:
 
   '@jridgewell/sourcemap-codec@1.5.5':
     resolution: {integrity: sha512-cYQ9310grqxueWbl+WuIUIaiUaDcj7WOq5fVhEljNVgRfOUhY9fy2zTvfoqWsnebh8Sl70VScFbICvJnLKB0Og==}
+
+  '@lucide/astro@1.14.0':
+    resolution: {integrity: sha512-RaCwEeeTQT0TOvoCu6cS0XMrjK56qrSzPVIUv1ycwqCUbfu9TjDmh7svJ/677kGhLje1IT2vxXg5nD53ta1jcg==}
+    peerDependencies:
+      astro: ^4 || ^5 || ^6
 
   '@oslojs/encoding@1.1.0':
     resolution: {integrity: sha512-70wQhgYmndg4GCPxPPxPGevRKqTIJ2Nh4OkiMWmDAVYsTQ+Ta7Sq+rPevXyXGdzr30/qZBnyOalCszoMxlyldQ==}
@@ -1681,6 +1689,10 @@ snapshots:
     optional: true
 
   '@jridgewell/sourcemap-codec@1.5.5': {}
+
+  '@lucide/astro@1.14.0(astro@6.2.1(rollup@4.60.2))':
+    dependencies:
+      astro: 6.2.1(rollup@4.60.2)
 
   '@oslojs/encoding@1.1.0': {}
 
