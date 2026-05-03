@@ -1,0 +1,31 @@
+---
+  import { Icon as IconType } from "@lucide/astro";
+
+  interface Props {
+    text: string;
+    Icon?: typeof IconType;
+  }
+
+  const {text, Icon} = Astro.props;
+---
+
+<button>
+  {Icon && <Icon size="1.5rem"/>}
+  {text}
+</button>
+
+<style>
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding: 0.75rem 1.5rem;
+
+    border: 1px solid var(--neutral-950);
+    border-radius: 5rem;
+
+    font-size: 1.3rem;
+    font-weight: 500;
+  }
+</style>
