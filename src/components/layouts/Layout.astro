@@ -1,7 +1,7 @@
 ---
   import '../../styles/reset.css';
   import '../../styles/variables.css';
-import HeaderLink from '../atoms/HeaderLink.astro';
+  import Header from '../organisms/Header.astro';
 ---
 
 <link href="https://api.fontshare.com/v2/css?f[]=clash-display@700,600,500,400&display=swap" rel="stylesheet">
@@ -16,23 +16,8 @@ import HeaderLink from '../atoms/HeaderLink.astro';
 		<title>Carlos Olcina - Portfolio</title>
 	</head>
 	<body>
-		<header>
-			<p>Carlos Olcina</p>
-			<nav>
-				<ul>
-					<li>
-            <HeaderLink href="#about-me">Inicio</HeaderLink>
-          </li>
-          <li>
-            <HeaderLink href="#projects">Proyectos</HeaderLink>
-          </li>
-          <li>
-            <HeaderLink href="#contact">Contacto</HeaderLink>
-          </li>
-				</ul>
-			</nav>
-		</header>
-
+		<Header></Header>
+    
     <main>
       <slot></slot>
     </main>
@@ -46,29 +31,5 @@ import HeaderLink from '../atoms/HeaderLink.astro';
 
   *{
     color: var(--neutral-950);
-  }
-
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 2rem 3rem;
-
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-
-    backdrop-filter: blur(10px);
-  }
-
-  p {
-    font-size: 1.5rem;
-    font-weight: 600;
-  }
-
-  nav ul {
-    display: flex;
-    gap: 3rem;
   }
 </style>

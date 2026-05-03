@@ -1,0 +1,30 @@
+---
+import Navbar from "../molecules/Navbar.astro";
+
+---
+
+<header>
+  <p>Carlos Olcina</p>
+  <Navbar />
+</header>
+
+<style>
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 3rem;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    backdrop-filter: blur(10px);
+  }
+
+  p {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+</style>
