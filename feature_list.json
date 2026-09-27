@@ -1,0 +1,20 @@
+{
+  "project": "portfolio",
+  "description": "Portfolio personal: sitio web estatico construido con Astro 6 + TypeScript y gestionado con pnpm.",
+  "rules": {
+    "one_feature_at_a_time": true,
+    "require_tests_to_close": true,
+    "require_approved_spec_to_implement": true,
+    "valid_status": ["pending", "spec_ready", "in_progress", "done", "blocked"],
+    "sdd_required_when": "feature has \"sdd\": true"
+  },
+  "features": [
+    {
+      "id": 1,
+      "name": "agent-harness-setup",
+      "status": "done",
+      "sdd": false,
+      "description": "Arnes de agentes y tooling base: 7 agentes de OpenCode en .opencode/agents/ (leader, spec_author, implementer, reviewer, commiter, secure-auditer, skill-generator), AGENTS.md, opencode.json, docs/, progress/, specs/ y CHECKPOINTS.md. Tooling: ESLint + Prettier + Vitest + astro check, scripts pnpm lint/check/test/build/validate y smoke test del index con Astro Container API."
+    }
+  ]
+}

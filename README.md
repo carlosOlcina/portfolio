@@ -1,43 +1,45 @@
-# Astro Starter Kit: Minimal
+# portfolio
 
-```sh
-pnpm create astro@latest -- --template minimal
-```
+Personal portfolio site built with [Astro](https://astro.build) 6 and strict TypeScript, managed with pnpm.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Commands
 
-## 🚀 Project Structure
+All commands are run from the root of the project:
 
-Inside of your Astro project, you'll see the following folders and files:
+| Command         | Action                                              |
+| :-------------- | :-------------------------------------------------- |
+| `pnpm install`  | Installs dependencies                               |
+| `pnpm dev`      | Starts local dev server at `localhost:4321`         |
+| `pnpm build`    | Builds the production site to `./dist/`             |
+| `pnpm preview`  | Previews the production build locally               |
+| `pnpm lint`     | Runs ESLint                                         |
+| `pnpm check`    | Runs `astro check` (types and `.astro` diagnostics) |
+| `pnpm test`     | Runs Vitest                                         |
+| `pnpm format`   | Formats the repo with Prettier                      |
+| `pnpm validate` | Closing gate: lint + check + test + build           |
+
+## Project structure
 
 ```text
 /
-├── public/
+├── public/             # Static assets served as-is
+├── specs/              # Kiro-style specs per feature (SDD)
 ├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── pages/          # File-based routes
+│   ├── layouts/        # Reusable page shells
+│   ├── components/     # Reusable .astro components
+│   ├── content/        # Content collections (Markdown/MDX + schema)
+│   ├── styles/         # Global styles
+│   └── assets/         # Images and assets processed by Astro
+├── tests/              # Vitest tests (Astro Container API)
+├── docs/               # Architecture, conventions, specs and verification
+├── progress/           # Session log (current.md + history.md)
+├── AGENTS.md           # Entry point for agents (SDD workflow)
+└── CHECKPOINTS.md      # Objective "final state" criteria
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Agent harness
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+This repository follows Spec Driven Development with OpenCode agents
+(`leader`, `spec_author`, `implementer`, `reviewer`, `commiter`,
+`secure-auditer`, `skill-generator`). Read `AGENTS.md` first.

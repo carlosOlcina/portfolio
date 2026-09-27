@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "portfolio",
   "type": "module",
   "version": "0.0.1",
   "engines": {
@@ -9,9 +9,27 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "check": "astro check",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "validate": "pnpm lint && pnpm check && pnpm test && pnpm build"
   },
   "dependencies": {
     "astro": "^6.2.1"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.11.0",
+    "eslint-plugin-astro": "^3.2.1",
+    "prettier": "^3.9.9",
+    "prettier-plugin-astro": "^1.1.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.70.1",
+    "vitest": "^5.0.2"
   }
 }
