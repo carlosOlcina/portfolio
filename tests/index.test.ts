@@ -1,6 +1,72 @@
 import { readFileSync, readdirSync } from 'node:fs';
 import { experimental_AstroContainer as AstroContainer } from 'astro/container';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
+
+vi.mock('astro:content', async () => {
+  const { default: cover } =
+    await import('../src/content/projects/covers/synapse.webp');
+
+  const createEntry = (id: string, data: Record<string, unknown>) => ({
+    id,
+    data: { coverPath: cover, ...data },
+  });
+
+  return {
+    getCollection: async () => [
+      createEntry('synapse', {
+        id: '6f9c1c1e-4a7b-4a3e-9d2f-1f5c8a2b7e10',
+        title: 'Synapse',
+        description:
+          'Copiloto IA para desarrolladores con análisis semántico de Git y AST en tiempo real.',
+        technologies: [
+          'Next.js',
+          'TypeScript',
+          'Tailwind',
+          'Claude API',
+          'Tree-sitter AST',
+        ],
+        coverAlt: 'Portada de Synapse: degradado índigo.',
+        websiteUrl: 'https://example.com',
+        githubUrl: 'https://github.com',
+        priority: 1,
+        featured: true,
+      }),
+      createEntry('aether-cloud', {
+        id: '2b8f0d4a-9c31-4f6e-8a75-3d9e0b6c1a24',
+        title: 'Aether Cloud',
+        description:
+          'Sincronización de estado en tiempo real en el edge con latencia global < 10ms.',
+        technologies: ['Go', 'Rust', 'WebSockets', 'Redis'],
+        coverAlt: 'Portada de Aether Cloud: degradado azul.',
+        websiteUrl: 'https://example.com',
+        priority: 2,
+      }),
+      createEntry('kortex-editor', {
+        id: 'c4a3e5b2-7d19-4b8c-a1f6-5e2d9087c431',
+        title: 'Kortex Editor',
+        description:
+          'Editor colaborativo local-first impulsado por CRDTs y WebAssembly.',
+        technologies: ['React', 'Wasm', 'CRDTs', 'Canvas'],
+        coverAlt: 'Portada de Kortex Editor: degradado violeta.',
+        websiteUrl: 'https://example.com',
+        githubUrl: 'https://github.com',
+        priority: 3,
+      }),
+      createEntry('vanguard-cli', {
+        id: '9d7b2e64-3c85-4a1f-b6e9-7f0c4a8d5b2e',
+        title: 'Vanguard CLI',
+        description:
+          'Herramienta CLI para auditorías de código y análisis de PRs con embeddings locales.',
+        technologies: ['Node.js', 'Rust CLI', 'Embeddings', 'Actions'],
+        coverAlt: 'Portada de Vanguard CLI: degradado índigo claro.',
+        websiteUrl: 'https://example.com',
+        githubUrl: 'https://github.com',
+        priority: 4,
+      }),
+    ],
+  };
+});
+
 import Index from '../src/pages/index.astro';
 
 type Declaration = readonly [property: string, value: string];
@@ -138,6 +204,8 @@ describe('index page', () => {
       'pages/index.astro',
       'layouts/BaseLayout.astro',
       'components/HeroSection.astro',
+      'components/ProjectsSection.astro',
+      'components/ProjectCard.astro',
     ].map((relativePath) =>
       readFileSync(new URL(relativePath, sourceRoot), 'utf8'),
     );

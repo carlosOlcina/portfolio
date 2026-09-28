@@ -1,13 +1,19 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HeroSection from '../components/HeroSection.astro';
+import ProjectsSection from '../components/ProjectsSection.astro';
 
 const PAGE_TITLE =
   'Carlos Olcina | Ingeniero Full-Stack y Arquitecto de Software IA';
 const PAGE_DESCRIPTION =
   'Ingeniero Full-Stack & Arquitecto de Software IA. Desarrollo web de alto rendimiento con React, Next.js y TypeScript.';
+
+const projectEntries = await getCollection('projects');
+const projects = projectEntries.map((entry) => entry.data);
 ---
 
 <BaseLayout title={PAGE_TITLE} description={PAGE_DESCRIPTION}>
   <HeroSection />
+  <ProjectsSection projects={projects} />
 </BaseLayout>

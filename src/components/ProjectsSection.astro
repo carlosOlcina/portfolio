@@ -1,0 +1,152 @@
+---
+import { sortProjects, type ProjectData } from '../content/projects-schema';
+import ProjectCard from './ProjectCard.astro';
+
+interface Props {
+  projects: ProjectData[];
+}
+
+const { projects } = Astro.props;
+const orderedProjects = sortProjects(projects);
+const featuredProjects = orderedProjects.filter((project) => project.featured);
+const remainingProjects = orderedProjects.filter(
+  (project) => !project.featured,
+);
+---
+
+<section class="projects animate-fade-in-up animation-delay-100" id="projects">
+  <div class="projects__inner">
+    <div class="projects__header">
+      <div class="projects__heading">
+        <div class="projects__eyebrow">
+          <span class="projects__label">Proyectos Seleccionados</span>
+          <span class="projects__label-rule"></span>
+        </div>
+        <h2 class="projects__title">
+          Proyectos con <span class="projects__title-accent">visión</span>
+        </h2>
+      </div>
+      <p class="projects__subtitle">
+        Software escalable, arquitecturas cloud y soluciones de IA en
+        producción.
+      </p>
+    </div>
+    <div class="projects__cards">
+      {featuredProjects.map((project) => (
+        <ProjectCard project={project} featured />
+      ))}
+      <div class="projects__grid">
+        {remainingProjects.map((project) => (
+          <ProjectCard project={project} />
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .projects {
+    padding-block: 6rem;
+    border-bottom: 1px solid rgba(199, 210, 254, 0.35);
+    scroll-margin-top: 6rem;
+  }
+
+  .projects__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+  }
+
+  .projects__header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .projects__header {
+      flex-direction: row;
+      align-items: flex-end;
+    }
+  }
+
+  .projects__heading {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .projects__eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .projects__label {
+    font-family: var(--font-body);
+    font-size: var(--text-label-sm-size);
+    line-height: var(--text-label-sm-line-height);
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+  }
+
+  .projects__label-rule {
+    display: block;
+    height: 1px;
+    width: 3rem;
+    background-color: rgba(53, 37, 205, 0.4);
+  }
+
+  .projects__title {
+    font-family: var(--font-headline);
+    font-size: var(--text-headline-lg-size);
+    line-height: var(--text-headline-lg-line-height);
+    font-weight: var(--text-headline-lg-weight);
+    letter-spacing: -0.025em;
+    color: var(--color-slate-900);
+  }
+
+  .projects__title-accent {
+    font-family: var(--font-headline);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--color-primary);
+  }
+
+  .projects__subtitle {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: var(--text-body-md-size);
+    line-height: 1.625;
+    letter-spacing: var(--text-body-md-letter-spacing);
+    color: var(--color-slate-600);
+    max-width: 28rem;
+  }
+
+  .projects__cards {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .projects__grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  @media (min-width: 768px) {
+    .projects__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .projects__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>

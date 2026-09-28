@@ -22,6 +22,13 @@
       "status": "done",
       "sdd": true,
       "description": "First UI increment from the Stitch \"Full Chromatic Glass\" design: global design tokens (colors, typography, spacing, animations) in src/styles/, fonts bundled from Fontsource (Newsreader + Plus Jakarta Sans), the hero section (headline, tagline, CTA buttons, CSS atmospheric blooms) and a dependency-free clipboard enhancement for the hero secondary CTA that copies the contact email and shows the design toast. Excludes the WebGL shader background, floating nav, remaining sections, footer and reuse of the toast outside the hero copy interaction."
+    },
+    {
+      "id": 3,
+      "name": "projects-section",
+      "status": "done",
+      "sdd": true,
+      "description": "Second increment from the Stitch \"Full Chromatic Glass\" design: the projects section on the home page (anchor id=\"projects\") rendered from a Zod-validated Markdown content collection `projects` (unique UUID id, title, description, technologies[], coverPath validated with the schema-context image() helper, coverAlt, websiteUrl, optional githubUrl, unique priority, featured). Includes four example entries seeded from the mockup (Synapse as featured, Aether Cloud, Kortex Editor, Vanguard CLI), raster WebP placeholder covers in src/content/projects/covers/ optimized through Astro's image pipeline (sharp added as a dependency), pure sorting/uniqueness helpers and tests tracing R<n>. Excludes nav, tech-stack/about/contact sections, footer, WebGL shader, project detail pages and Markdown body rendering."
     }
   ]
 }
