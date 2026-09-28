@@ -15,6 +15,13 @@
       "status": "done",
       "sdd": false,
       "description": "Arnes de agentes y tooling base: 7 agentes de OpenCode en .opencode/agents/ (leader, spec_author, implementer, reviewer, commiter, secure-auditer, skill-generator), AGENTS.md, opencode.json, docs/, progress/, specs/ y CHECKPOINTS.md. Tooling: ESLint + Prettier + Vitest + astro check, scripts pnpm lint/check/test/build/validate y smoke test del index con Astro Container API."
+    },
+    {
+      "id": 2,
+      "name": "hero-section",
+      "status": "done",
+      "sdd": true,
+      "description": "First UI increment from the Stitch \"Full Chromatic Glass\" design: global design tokens (colors, typography, spacing, animations) in src/styles/, fonts bundled from Fontsource (Newsreader + Plus Jakarta Sans), the hero section (headline, tagline, CTA buttons, CSS atmospheric blooms) and a dependency-free clipboard enhancement for the hero secondary CTA that copies the contact email and shows the design toast. Excludes the WebGL shader background, floating nav, remaining sections, footer and reuse of the toast outside the hero copy interaction."
     }
   ]
 }

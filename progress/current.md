@@ -1,3 +1,3 @@
-# Sesión actual
+# Current session
 
-> Este archivo se vacía al cerrar cada sesión y se mueve a `history.md`.
+> This file is emptied at the end of each session and moved to `history.md`.

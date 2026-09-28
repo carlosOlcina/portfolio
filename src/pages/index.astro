@@ -1,16 +1,13 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/HeroSection.astro';
+
+const PAGE_TITLE =
+  'Carlos Olcina | Ingeniero Full-Stack y Arquitecto de Software IA';
+const PAGE_DESCRIPTION =
+  'Ingeniero Full-Stack & Arquitecto de Software IA. Desarrollo web de alto rendimiento con React, Next.js y TypeScript.';
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Astro</title>
-  </head>
-  <body>
-    <h1>Astro</h1>
-  </body>
-</html>
+<BaseLayout title={PAGE_TITLE} description={PAGE_DESCRIPTION}>
+  <HeroSection />
+</BaseLayout>
