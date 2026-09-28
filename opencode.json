@@ -2,6 +2,12 @@
   "$schema": "https://opencode.ai/config.json",
   "default_agent": "leader",
   "instructions": ["AGENTS.md"],
+  "mcp": {
+    "astro-docs": {
+      "type": "remote",
+      "url": "https://mcp.docs.astro.build/mcp"
+    }
+  },
   "permission": {
     "bash": {
       "*": "ask",
