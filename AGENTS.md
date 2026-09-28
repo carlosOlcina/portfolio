@@ -43,6 +43,9 @@
   en `spec_ready` y espera.
 - **Documenta lo que haces** en `progress/current.md` mientras trabajas, no al final.
 - **Deja el repositorio limpio** antes de cerrar la sesión (ver §5).
+- **English in everything you generate.** Documentation, comments, commit
+  messages, file names, class names, variable names, and any other identifier
+  must be written in English. Do not mix languages inside the repo.
 - **Si no sabes algo, busca en `docs/`** antes de inventarlo.
 
 ## 4. Flujo de trabajo (SDD)
@@ -91,7 +94,7 @@ Antes de terminar:
 ## 2. Reglas de estilo
 
 - Todo el generado debe seguir las siguientes reglas.
-- Usar siempre el lenguaje de inglés, tanto en comentarios, commits, variables, etc.
+- Write everything in English: documentation, comments, commits, file names, class names, variable names, and identifiers.
 - Priorizar la simplicidad sobre la complejidad.
 - Evitar duplicación de código (DRY).
 - Seguir el principio KISS.
