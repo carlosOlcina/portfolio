@@ -152,6 +152,31 @@ function extractResponsiveRule(
   );
 }
 
+function extractMediaBlock(source: string, breakpoint: number): string {
+  const normalized = normalize(source);
+  const marker = `@media (min-width: ${breakpoint}px)`;
+  const markerIndex = normalized.indexOf(marker);
+  if (markerIndex === -1) {
+    throw new Error(`Media query not found: ${marker}`);
+  }
+
+  const openIndex = normalized.indexOf('{', markerIndex);
+  let depth = 0;
+
+  for (let index = openIndex; index < normalized.length; index += 1) {
+    if (normalized[index] === '{') {
+      depth += 1;
+    } else if (normalized[index] === '}') {
+      depth -= 1;
+      if (depth === 0) {
+        return normalized.slice(openIndex + 1, index);
+      }
+    }
+  }
+
+  throw new Error(`Unbalanced media query: ${marker}`);
+}
+
 function expectDeclarations(
   block: string,
   declarations: ReadonlyArray<Declaration>,
@@ -172,6 +197,13 @@ async function renderSection(projects: ProjectData[]): Promise<string> {
 async function renderCard(project: ProjectData): Promise<string> {
   const container = await AstroContainer.create();
   return container.renderToString(ProjectCard, { props: { project } });
+}
+
+async function renderFeaturedCard(project: ProjectData): Promise<string> {
+  const container = await AstroContainer.create();
+  return container.renderToString(ProjectCard, {
+    props: { project, featured: true },
+  });
 }
 
 async function renderPage(): Promise<string> {
@@ -405,6 +437,39 @@ describe('projects section', () => {
     expectDeclarations(
       extractRule(cardSource, '.project-card--featured .project-card__cover'),
       [['grid-column', '7 / span 6']],
+    );
+  });
+
+  it('pins_featured_card_halves_to_one_row', () => {
+    const featuredGrid = extractMediaBlock(cardSource, 1024);
+
+    expectDeclarations(
+      extractRule(featuredGrid, '.project-card--featured .project-card__meta'),
+      [
+        ['grid-column', '1 / span 6'],
+        ['grid-row', '1'],
+      ],
+    );
+
+    expectDeclarations(
+      extractRule(featuredGrid, '.project-card--featured .project-card__cover'),
+      [
+        ['grid-column', '7 / span 6'],
+        ['grid-row', '1'],
+      ],
+    );
+  });
+
+  it('stacks_featured_card_below_1024', async () => {
+    const featuredGrid = extractMediaBlock(cardSource, 1024);
+    const outsideMedia = normalize(cardSource).replace(featuredGrid, '');
+
+    expect(outsideMedia).not.toContain('grid-row');
+    expect(outsideMedia).not.toContain('grid-column');
+
+    const html = normalize(await renderFeaturedCard(createProject()));
+    expect(html.indexOf('project-card__cover')).toBeLessThan(
+      html.indexOf('project-card__meta'),
     );
   });
 

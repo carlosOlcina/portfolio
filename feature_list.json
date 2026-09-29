@@ -29,6 +29,13 @@
       "status": "done",
       "sdd": true,
       "description": "Second increment from the Stitch \"Full Chromatic Glass\" design: the projects section on the home page (anchor id=\"projects\") rendered from a Zod-validated Markdown content collection `projects` (unique UUID id, title, description, technologies[], coverPath validated with the schema-context image() helper, coverAlt, websiteUrl, optional githubUrl, unique priority, featured). Includes four example entries seeded from the mockup (Synapse as featured, Aether Cloud, Kortex Editor, Vanguard CLI), raster WebP placeholder covers in src/content/projects/covers/ optimized through Astro's image pipeline (sharp added as a dependency), pure sorting/uniqueness helpers and tests tracing R<n>. Excludes nav, tech-stack/about/contact sections, footer, WebGL shader, project detail pages and Markdown body rendering."
+    },
+    {
+      "id": 4,
+      "name": "fix-featured-project-card-layout",
+      "status": "done",
+      "sdd": true,
+      "description": "Bugfix for the done projects-section feature: the featured project card breaks at >=1024px. In src/components/ProjectCard.astro the >=1024px grid assigns .project-card__meta to grid-column 1/span 6 and .project-card__cover to grid-column 7/span 6 without pinning rows, so the DOM-ordered cover occupies row 1 and the meta is auto-placed into row 2, leaving the cover alone and a large empty gap. Expected: meta (left) and cover (right) side by side in the same row at >=1024px, stacked cover-first below that breakpoint, with a regression test for the responsive placement."
     }
   ]
 }

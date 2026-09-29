@@ -68,3 +68,54 @@
   el hover de las tarjetas y el comportamiento con `prefers-reduced-motion`.
 - Evidencia: `progress/impl_projects-section.md` y `progress/review_projects-section.md`.
 - `pnpm validate` verde: lint + check + test + build.
+
+## 2026-09-29 — fix-featured-project-card-layout
+
+- Bugfix on the done `projects-section` feature: the featured project card
+  (`Synapse`) broke at viewports ≥1024px — the cover rendered alone top-right
+  and the meta was pushed to a second row on the left, leaving a large empty
+  gap (card 663px tall at 1440×900 pre-fix).
+- Diagnosed root cause: in `src/components/ProjectCard.astro`, the
+  `@media (min-width: 1024px)` grid assigned definite columns to
+  `.project-card--featured .project-card__meta` (1 / span 6) and
+  `.project-card--featured .project-card__cover` (7 / span 6) without pinning
+  rows; with the DOM order (cover first, meta second) auto-placement put the
+  cover in row 1 (columns 7–12) and the meta in row 2 (columns 1–6).
+- Final fix: two `grid-row: 1;` declarations inside that same existing 1024px
+  media query, one per half. No markup change, no other declaration, no new
+  dependency, no client-side JavaScript.
+- Regression tests in `tests/projects-section.test.ts`: new helpers
+  `extractMediaBlock` (brace matching) and `renderFeaturedCard`, plus
+  `pins_featured_card_halves_to_one_row` (R1) and
+  `stacks_featured_card_below_1024` (R3); pre-existing test bodies untouched
+  (test diff is additions only).
+- Spec approved and implemented at `specs/fix-featured-project-card-layout/`
+  (requirements R1–R5, design, tasks all `[x]`).
+- Playwright MCP incident: the MCP's bundled `playwright-core` expected
+  browser revision `chromium-1247` (only older revisions were cached) and its
+  default `chrome` channel needed a system Chrome that is not installed. Fix
+  applied outside the repo: installed `chromium-1247` + headless shell with the
+  MCP's own Playwright CLI and added `--browser chromium` to the MCP command in
+  the global opencode config; the fixed command was smoke-tested over JSON-RPC
+  (initialize, navigate, close) OK. opencode does not hot-reload MCP configs,
+  so a **full opencode restart is still pending** before future sessions can
+  use the fixed MCP.
+- Browser evidence gathered with the engine fallback
+  (`/tmp/opencode/verify-fix.cjs`, cached `playwright-core`,
+  `chromium.launch({ channel: 'chrome-for-testing' })`) because the MCP was not
+  loaded: at 1440×900 and 1024×800 meta left / cover right in one row, vertical
+  centers within 0px, no horizontal overflow, card height 365px (vs 663px
+  pre-fix) and 331.88px (vs 623px); at 768×1024 and 375×812 stacked
+  cover-first, no overflow. Screenshots:
+  `/tmp/opencode/shots/fix-{desktop-1440,laptop-1024,tablet-768,mobile-375}-projects.png`.
+- Reviewer verdict: APPROVED (`progress/review_fix-featured-project-card-layout.md`),
+  no required changes; the single non-blocking observation (Prettier formatting
+  of this session's progress markdown files) was resolved with
+  `prettier --write`. Repo-wide `pnpm format:check` remains red only on two
+  pre-existing drifted files outside this feature (verified unformatted at
+  HEAD); `pnpm validate` does not include format:check.
+- Evidence files: `progress/impl_fix-featured-project-card-layout.md` and
+  `progress/review_fix-featured-project-card-layout.md`.
+- `pnpm validate` green: lint + check + test (10 files, 89/89 tests) + build.
+- **Human action required:** restart opencode so the fixed Playwright MCP
+  (`--browser chromium`) loads in future sessions.
