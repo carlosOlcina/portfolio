@@ -191,3 +191,39 @@
 - **Human verification pending:** the first real GitHub Actions run — a push to any
   branch and a pull request targeting `main` — after merge; Actions cannot run
   offline in this environment.
+
+## 2026-09-30 — fix-hero-headline-whitespace
+
+- Bugfix on the done `hero-section` (id 2) exposed by PR #7: after main upgraded to
+  Astro 7 (`astro ^7.2.8`, lockfile installing 7.3.5) the compiler's new
+  `compressHTML: 'jsx'` default trims incidental template whitespace, so
+  `src/components/HeroSection.astro` rendered
+  `…intersección de<span class="hero__headline-accent">` and
+  `tests/hero.test.ts > renders_verbatim_hero_texts` failed (visual regression
+  "deingeniería"). The same failure class also existed on main in
+  `src/components/TechnologiesSection.astro`
+  (`tests/technologies-section.test.ts > renders_section_header`).
+- Fix: emit the space explicitly with the documented Astro 7 remedy (`{' '}`)
+  between the headline text and the accent span in `HeroSection.astro`, and — under
+  the human-approved scope extension, same root cause and same PR — in
+  `TechnologiesSection.astro`; `astro.config.mjs` / `compressHTML` untouched.
+- Contract hardening, additions only: new `emits_explicit_headline_space` in
+  `tests/hero.test.ts` pins the raw rendered junction to U+0020 and asserts the
+  explicit construct in the component source; `renders_verbatim_hero_texts` and
+  every other pre-existing body stay byte-identical. R6 traces the technologies
+  extension to the unchanged `renders_section_header`.
+- Branch sync: merged the human's `47fc422` web-merge commit (which already
+  contained `origin/main`) and resolved `feature_list.json` / `progress/history.md`
+  with the final numbering (technologies-section 5, ci-github-action 6, this fix 7);
+  `pnpm install --frozen-lockfile` reinstalled Astro 7.3.5; no rebase and no
+  force-push.
+- Reviewer verdict: APPROVED (`progress/review_fix-hero-headline-whitespace.md`), no
+  required changes.
+- `pnpm validate` (lint + check + test + build) and `pnpm format:check` green under
+  Astro 7.3.5; full suite 14 files / 157 tests, including hero 10/10 and
+  technologies 27/27.
+- Evidence kept: `progress/impl_fix-hero-headline-whitespace.md` and
+  `progress/review_fix-hero-headline-whitespace.md`.
+- **Human verification pending:** after the committer pushes, the PR #7 push and
+  `pull_request` runs must be green and the PR mergeable — Actions cannot run
+  offline in this environment.

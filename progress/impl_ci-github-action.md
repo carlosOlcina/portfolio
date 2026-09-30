@@ -1,6 +1,6 @@
 # Implementation report — `ci-github-action`
 
-- **Feature:** id 5, `name: ci-github-action`, `sdd: true` (status still `in_progress`; awaiting reviewer).
+- **Feature:** id 6 (renumbered from id 5 during the PR #7 sync merge), `name: ci-github-action`, `sdd: true` (status still `in_progress`; awaiting reviewer).
 - **Spec:** `specs/ci-github-action/{requirements,design,tasks}.md`, approved by the human.
 - **Branch:** `feat/create-github-actions`.
 - **Date:** 2026-09-30.
@@ -29,7 +29,7 @@ Unchanged: `src/**`, `package.json`, `pnpm-lock.yaml`, `astro.config.mjs`, `vite
 Task 1.1 flagged 5 files (`prettier --check .`): the two expected pre-existing ones plus `feature_list.json`, `specs/ci-github-action/design.md` and `specs/ci-github-action/requirements.md`. Per `design.md` §3 they were rewritten with `prettier --write` and verified as format-only:
 
 - For every normalized file, the working file is byte-identical to `prettier` run over its pre-format content (`--stdin-filepath` against the snapshot of the previous content): `.opencode/skills/astro-modern-practices/SKILL.md`, `progress/review_projects-section.md`, `specs/ci-github-action/design.md` and `specs/ci-github-action/requirements.md`.
-- `feature_list.json` was compared at JSON level: `features[0..3]` are content-identical to `HEAD`; `features[4]` is the id 5 entry that existed before formatting; only the `valid_status` array wrapping changed.
+- `feature_list.json` was compared at JSON level: `features[0..3]` are content-identical to `HEAD`; `features[4]` is the `ci-github-action` entry (id 5 at that time, now id 6) that existed before formatting; only the `valid_status` array wrapping changed.
 - Diffs for the markdown files touch only table alignment and whitespace; no words, code spans or links changed.
 
 ## Verification evidence

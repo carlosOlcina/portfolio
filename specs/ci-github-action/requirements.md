@@ -1,7 +1,7 @@
 # Requirements — ci-github-action
 
-- **Feature:** `ci-github-action` (id 5, `sdd: true`).
-- **Source of truth:** `feature_list.json` id 5 and the human request (2026-09-30): a GitHub Actions workflow named `CI` that runs on pushes to all branches and on pull requests targeting `main`, installs dependencies with pnpm using dependency caching, and then runs typecheck, lint, format check (non-mutating) and tests.
+- **Feature:** `ci-github-action` (id 6, `sdd: true`).
+- **Source of truth:** `feature_list.json` id 6 and the human request (2026-09-30): a GitHub Actions workflow named `CI` that runs on pushes to all branches and on pull requests targeting `main`, installs dependencies with pnpm using dependency caching, and then runs typecheck, lint, format check (non-mutating) and tests.
 - **In scope:** the workflow file `.github/workflows/ci.yml` and its offline Vitest contract `tests/ci-workflow.test.ts`, plus the format-only normalization of the repository files that currently keep `pnpm format:check` red (see `design.md` §3).
 - **Out of scope:** deployment, release automation, build/artifact publishing, a build job, `pnpm validate` as a single step, OS/Node matrices, concurrency cancellation, dependency-bot automation, branch protection, and any change to application code (`src/`).
 
@@ -199,7 +199,7 @@ All tests live in `tests/ci-workflow.test.ts`.
 
 ## Feature description coverage
 
-| Feature description item (id 5)                                       | Requirements                                        |
+| Feature description item (id 6)                                       | Requirements                                        |
 | --------------------------------------------------------------------- | --------------------------------------------------- |
 | Workflow at `.github/workflows/ci.yml`                                | R1                                                  |
 | Named `CI`                                                            | R2                                                  |

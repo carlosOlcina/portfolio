@@ -2,7 +2,7 @@
 
 ## 1. Context
 
-Feature id 5 (`sdd: true`). Goal: a repository-level GitHub Actions gate that mirrors the local quality commands on every branch push and on pull requests to `main`, with pnpm dependency caching and without any build, deploy or release step.
+Feature id 6 (renumbered from id 5 during the PR #7 sync merge) (`sdd: true`). Goal: a repository-level GitHub Actions gate that mirrors the local quality commands on every branch push and on pull requests to `main`, with pnpm dependency caching and without any build, deploy or release step.
 
 Grounding facts:
 

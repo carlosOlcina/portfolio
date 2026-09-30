@@ -25,6 +25,7 @@ Feature id 7 (`sdd: true`), bugfix on the done `hero-section` feature (id 2). Gr
 | File                                                                | Action                  | Responsibility                                                                                    |
 | ------------------------------------------------------------------- | ----------------------- | ------------------------------------------------------------------------------------------------- |
 | `src/components/HeroSection.astro`                                  | modify                  | Add the explicit `{' '}` expression (R1, R2, R5).                                                 |
+| `src/components/TechnologiesSection.astro`                          | modify                  | Human-approved scope extension: same explicit `{' '}` remedy in the section title (R6).           |
 | `tests/hero.test.ts`                                                | modify (additions only) | New `emits_explicit_headline_space` (R1, R2); strict test and every other body untouched (R3–R5). |
 | `feature_list.json`                                                 | modify                  | Merge-conflict resolution and final numbering (tech 5, ci 6, fix 7); this feature's status flow.  |
 | `progress/history.md`                                               | modify                  | Merge-conflict resolution; keep both features' entries; ci entry id note (§8).                    |
@@ -64,6 +65,10 @@ After:
 - Expected rendered markup: `<h1 class="hero__headline">Desarrollo digital en la intersección de <span class="hero__headline-accent">ingeniería e IA.</span></h1>`.
 - Prettier (repo config `singleQuote: true`, `prettier-plugin-astro`) may normalize the expression's inner spacing (`{' '}` vs `{ ' ' }`); the rendered result is identical. Run `prettier --write` on the file and let the committed form be Prettier-clean.
 - The construct is self-documenting as a deliberate space; no CSS, no client JavaScript, no new dependency, no markup restructuring.
+
+### Scope extension (human-approved)
+
+During implementation the same Astro 7 `compressHTML: 'jsx'` whitespace trim was found in main's `src/components/TechnologiesSection.astro`: `tests/technologies-section.test.ts > renders_section_header` failed with `Tecnologías y herramientas<span` (reproduced on a pristine `320655c` worktree under the merged Astro 7.3.5). The human approved extending this feature — same root cause, same PR, same documented remedy — so the explicit `{' '}` expression is applied there too and the pre-existing test body stays untouched (R6, task 3.3). This note supersedes the §3 exclusion for that single file; no other component, page or test changes.
 
 ## 5. Test contract hardening
 

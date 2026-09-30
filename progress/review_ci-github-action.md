@@ -1,4 +1,4 @@
-# Review — feature ci-github-action (id 5)
+# Review — feature ci-github-action (id 6, renumbered from id 5 during the PR #7 sync merge)
 
 **Veredicto:** APPROVED
 
@@ -77,7 +77,7 @@ is vacuous. Independent run: 23/23 green.
 - C1: [x] Harness complete — `AGENTS.md`, `feature_list.json`,
   `progress/current.md` exist; `docs/{architecture,conventions,specs,verification}.md`
   exist; `pnpm validate` exit 0.
-- C2: [x] Coherent state — exactly one feature `in_progress` (id 5); features
+- C2: [x] Coherent state — exactly one feature `in_progress` (id 5 at review time, now id 6 after the PR #7 sync renumbering); features
   1–4 are `done` with green tests (112/112); `progress/current.md` describes the
   active session only.
 - C3: [x] Architecture respected — no `src/` change (`git diff --name-only -- src`
@@ -90,7 +90,7 @@ is vacuous. Independent run: 23/23 green.
   (`.github/`, `tests/ci-workflow.test.ts`, `specs/ci-github-action/`,
   `progress/impl_ci-github-action.md`); no `*.tmp`; `dist/` and `.astro/` are
   gitignored. `progress/history.md` holds the last closed session entry
-  (id 4); the id 5 entry is appended at close per `AGENTS.md` §5 and the feature
+  (id 4); the `ci-github-action` entry (now id 6) is appended at close per `AGENTS.md` §5 and the feature
   is still correctly `in_progress`.
 - C6: [x] SDD — `specs/ci-github-action/` has the three files; `requirements.md`
   is strict EARS (one `MUST`/`MUST NOT` per `R<n>`, R1–R23); all tasks `[x]`;
@@ -120,7 +120,7 @@ is vacuous. Independent run: 23/23 green.
   added (`package.json` untouched at HEAD).
 - Tracked modifications are format-only: `.opencode/skills/astro-modern-practices/SKILL.md`
   and `progress/review_projects-section.md` diffs touch only table alignment and
-  whitespace; `feature_list.json` only gains the id 5 entry. The spec/progress
+  whitespace; `feature_list.json` only gains the `ci-github-action` entry (now id 6). The spec/progress
   files are new/untracked, so no baseline diff exists; their content was read and
   is consistent with the approved spec.
 

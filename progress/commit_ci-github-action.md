@@ -1,4 +1,4 @@
-# Commit — feature ci-github-action (id 5)
+# Commit — feature ci-github-action (id 6, renumbered from id 5 during the PR #7 sync merge)
 
 - **Scope:** single atomic commit for the repository CI gate: the GitHub
   Actions workflow, its offline contract tests, the approved SDD spec, the

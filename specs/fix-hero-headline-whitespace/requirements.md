@@ -45,6 +45,16 @@ The system MUST NOT change any other rendered markup, text, class name, style ru
 
 ---
 
+## 2. Technologies section spacing (human-approved scope extension)
+
+### R6 — Technologies headline space preserved under the upgraded compiler
+
+WHEN `TechnologiesSection` is rendered by the upgraded compiler, the system MUST keep exactly one visible space (U+0020) between `Tecnologías y herramientas` and the opening `<span class="tech-stack__title-accent">`, so the section title reads `Tecnologías y herramientas clave`.
+
+**Verification:** `tests/technologies-section.test.ts` → `renders_section_header` (pre-existing; body unchanged) asserts the normalized output contains `Tecnologías y herramientas <span class="tech-stack__title-accent"`.
+
+---
+
 ## Traceability
 
 | Requirement | Test file                                   | Test name                                                                           |
@@ -54,15 +64,17 @@ The system MUST NOT change any other rendered markup, text, class name, style ru
 | R3          | `tests/hero.test.ts`                        | `renders_verbatim_hero_texts` (pre-existing, body unchanged)                        |
 | R4          | `tests/hero.test.ts`                        | `renders_verbatim_hero_texts` under the merged Astro 7 install                      |
 | R5          | `tests/hero.test.ts`, `tests/index.test.ts` | all pre-existing tests, unchanged bodies                                            |
+| R6          | `tests/technologies-section.test.ts`        | `renders_section_header` (pre-existing, body unchanged)                             |
 
 ## Feature description coverage
 
-| Feature description item (id 7)                                              | Requirements                                                         |
-| ---------------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| Astro 7 trims the whitespace between the headline text and the accent span   | R1, R2                                                               |
-| Renders `intersección de<span>ingeniería` — visual regression "deingeniería" | R1                                                                   |
-| Emit the space explicitly in `src/components/HeroSection.astro`              | R2                                                                   |
-| The strict verbatim contract (`renders_verbatim_hero_texts`) holds           | R1, R3, R4                                                           |
-| No other hero/page regression                                                | R5                                                                   |
-| Branch sync, id renumbering (5/6/7), Astro 7 reinstall and green gates       | Out of scope for requirements; see `design.md` §6–§10 and `tasks.md` |
-| Excludes CI workflow changes                                                 | Out of scope (`design.md` §3; scope check task 6.7)                  |
+| Feature description item (id 7)                                                  | Requirements                                                         |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| Astro 7 trims the whitespace between the headline text and the accent span       | R1, R2                                                               |
+| Renders `intersección de<span>ingeniería` — visual regression "deingeniería"     | R1                                                                   |
+| Emit the space explicitly in `src/components/HeroSection.astro`                  | R2                                                                   |
+| The strict verbatim contract (`renders_verbatim_hero_texts`) holds               | R1, R3, R4                                                           |
+| No other hero/page regression                                                    | R5                                                                   |
+| Branch sync, id renumbering (5/6/7), Astro 7 reinstall and green gates           | Out of scope for requirements; see `design.md` §6–§10 and `tasks.md` |
+| Excludes CI workflow changes                                                     | Out of scope (`design.md` §3; scope check task 6.7)                  |
+| Same Astro 7 whitespace trim in the technologies section title (scope extension) | R6                                                                   |
