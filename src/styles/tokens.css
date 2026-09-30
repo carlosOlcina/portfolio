@@ -51,6 +51,9 @@
   /* Font families */
   --font-headline: 'Newsreader Variable', Newsreader, serif;
   --font-body: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', sans-serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace;
 
   /* Typography scale */
   --text-headline-xl-size: 3.75rem;

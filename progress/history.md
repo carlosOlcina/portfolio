@@ -120,6 +120,49 @@
 - **Human action required:** restart opencode so the fixed Playwright MCP
   (`--browser chromium`) loads in future sessions.
 
+## 2026-09-30 — technologies-section (id 5)
+
+- Third UI increment of the "Full Chromatic Glass" design: the tech-stack
+  glass bento section on the home page (`<section id="tech-stack">`), rendered
+  immediately after `#projects`; spec at `specs/technologies-section/`.
+- Data: JSON content collection `technologies` (glob loader over
+  `src/content/technologies/*.json`, strict Zod schema
+  `id`/`category`/`iconUrl`/`name`, plus `TECHNOLOGY_CATEGORIES`,
+  `groupTechnologies` and `assertUniqueTechnologies` helpers in
+  `src/content/technologies-schema.ts`); 26 seed entries across Frontend (7),
+  Backend y Nube (8), IA y Sistemas (4) and Flujo de Trabajo y Diseño (7).
+- Icons: 26 svgl SVGs vendored in `public/icons/logos/` (local files only, no
+  CDN and no runtime fetch; 57,873 B total, largest `ollama.svg` at 8,572 B)
+  referenced by root-relative `iconUrl` paths.
+- UI: `TechnologiesSection.astro` renders the header, the four-category glass
+  grid, 40px chips (`title` + informative `alt`), category titles as `<h3>`
+  and the closing quote bar with the `Filosofía Técnica` mono badge; one new
+  `--font-mono` token; zero client JS (the only bundled script remains the
+  hero clipboard enhancement).
+- Spec contradiction resolved with leader approval (**Option A, mechanical
+  correction**): 8 of the 26 seed ids did not satisfy Zod 4 `z.uuid()` (invalid
+  RFC 9562 variant nibble); the 8 ids were corrected in the requirements R10
+  table, design §5, the seed JSONs and the test table, keeping `z.uuid()` and
+  the approved 26-entry list unchanged.
+- Tests: 133/133 green across 13 files, tracing R1–R44 (new
+  `tests/technologies-schema.test.ts`, `tests/technologies-content.test.ts`
+  and `tests/technologies-section.test.ts`); `pnpm validate` green: lint +
+  check (0 errors) + tests + build, with the 26 icons and the 26-entry section
+  verified in `dist/`.
+- Browser check (task 9.5): section after projects, 4/2/1 grid columns,
+  chip and card hovers, quote bar and reduced-motion collapse verified live;
+  build negative spot-checks (unknown JSON key, duplicate id) fail the build
+  as intended.
+- Reviewer verdict: APPROVED (`progress/review_technologies-section.md`), no
+  required fixes; the single non-blocking Prettier observation on the reports
+  was applied at session close.
+- Evidence: `progress/impl_technologies-section.md` and
+  `progress/review_technologies-section.md`.
+- Non-blocking notes acked: `.playwright-mcp/` output directory cleanup/ignore
+  handled by the leader; the R3 "RFC 4122" wording nit left as-is (the
+  corrected contract follows RFC 9562 via Zod 4).
+- `pnpm validate` green: lint + check + test (13 files, 133/133) + build.
+
 ## 2026-09-30 — ci-github-action
 
 - Feature id 5 (`sdd: true`): repository-level GitHub Actions gate. Created

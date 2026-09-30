@@ -43,6 +43,14 @@
       "status": "done",
       "sdd": true,
       "description": "GitHub Actions CI workflow (.github/workflows/ci.yml) named \"CI\" that runs on pushes to all branches and on pull requests targeting main. Installs dependencies with pnpm using dependency caching, then runs typecheck (astro check), lint (eslint), format check (prettier --check, non-mutating) and tests (vitest). Excludes deployment, release automation, build/artifact publishing and any change to application code."
+    },
+    {
+      "id": 6,
+      "name": "technologies-section",
+      "status": "done",
+      "sdd": true,
+      "description": "Third UI increment from the Stitch \"Full Chromatic Glass\" design: the tech stack section on the home page (anchor id=\"tech-stack\") rendered from a Zod-validated JSON content collection `technologies` (fields: id, category, iconUrl, name) with svgl SVG logos vendored in public/icons/logos/ and referenced by local iconUrl paths. Follows the mockup's tech-stack bento glass section including its four categories and closing quote (specs/projects-section/references/projects-section.html lines 1199-1733; digest in specs/hero-section/references/design-notes.md). Excludes nav, about/contact sections, footer, WebGL shader and client-side JavaScript."
+
     }
   ]
 }
