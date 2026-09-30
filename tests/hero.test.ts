@@ -100,6 +100,14 @@ describe('hero section', () => {
     expect(normalizedHtml).toContain('>Copiar Correo</span>');
   });
 
+  it('emits_explicit_headline_space', async () => {
+    expect(heroSource).toMatch(/intersección de\s*\{\s*['"] ['"]\s*\}\s*<span/);
+
+    const html = await renderHero();
+    const junction = /intersección de(.)<span/.exec(html);
+    expect(junction?.[1]).toBe(' ');
+  });
+
   it('styles_hero_headline', () => {
     expectDeclarations(extractRule(heroSource, '.hero__headline'), [
       ['font-family', 'var(--font-headline)'],

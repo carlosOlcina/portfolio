@@ -43,6 +43,20 @@
       "status": "done",
       "sdd": true,
       "description": "Third UI increment from the Stitch \"Full Chromatic Glass\" design: the tech stack section on the home page (anchor id=\"tech-stack\") rendered from a Zod-validated JSON content collection `technologies` (fields: id, category, iconUrl, name) with svgl SVG logos vendored in public/icons/logos/ and referenced by local iconUrl paths. Follows the mockup's tech-stack bento glass section including its four categories and closing quote (specs/projects-section/references/projects-section.html lines 1199-1733; digest in specs/hero-section/references/design-notes.md). Excludes nav, about/contact sections, footer, WebGL shader and client-side JavaScript."
+    },
+    {
+      "id": 6,
+      "name": "ci-github-action",
+      "status": "done",
+      "sdd": true,
+      "description": "GitHub Actions CI workflow (.github/workflows/ci.yml) named \"CI\" that runs on pushes to all branches and on pull requests targeting main. Installs dependencies with pnpm using dependency caching, then runs typecheck (astro check), lint (eslint), format check (prettier --check, non-mutating) and tests (vitest). Excludes deployment, release automation, build/artifact publishing and any change to application code."
+    },
+    {
+      "id": 7,
+      "name": "fix-hero-headline-whitespace",
+      "status": "done",
+      "sdd": true,
+      "description": "Bugfix exposed by the new CI on PR #7: after main bumped to Astro 7 (astro ^7.2.8, PR #5), the compiler trims the whitespace between the hero headline text and the accent span, so HeroSection renders \"intersección de<span>ingeniería\" and tests/hero.test.ts > renders_verbatim_hero_texts fails, a real visual regression (\"deingeniería\"). Emit the space explicitly in src/components/HeroSection.astro so the strict verbatim contract holds under the upgraded compiler. Also sync feat/create-github-actions with main: merge origin/main, resolve the feature_list.json and progress/history.md conflicts (technologies-section keeps id 5, ci-github-action becomes id 6 and this fix takes id 7, updating the affected references), reinstall dependencies with Astro 7 and leave pnpm validate green so PR #7 turns green and becomes mergeable. Excludes CI workflow changes: .github/workflows/ci.yml and tests/ci-workflow.test.ts already pass."
     }
   ]
 }

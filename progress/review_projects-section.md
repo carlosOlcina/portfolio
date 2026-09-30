@@ -11,12 +11,12 @@
 
 `pnpm validate` (lint → check → test → build): **exit code 0**
 
-| Step                         | Result                                      |
-| ---------------------------- | ------------------------------------------- |
-| `pnpm lint` (`eslint .`)     | clean, 0 errors                             |
-| `pnpm check` (`astro check`) | 23 files, 0 errors, 0 warnings, 0 hints     |
-| `pnpm test` (`vitest run`)   | 10 files, 87/87 tests passed                |
-| `pnpm build` (`astro build`) | 1 static page + 4 optimized WebP images     |
+| Step                         | Result                                  |
+| ---------------------------- | --------------------------------------- |
+| `pnpm lint` (`eslint .`)     | clean, 0 errors                         |
+| `pnpm check` (`astro check`) | 23 files, 0 errors, 0 warnings, 0 hints |
+| `pnpm test` (`vitest run`)   | 10 files, 87/87 tests passed            |
+| `pnpm build` (`astro build`) | 1 static page + 4 optimized WebP images |
 
 Independent checks (not taken from the impl report):
 
@@ -34,53 +34,53 @@ Independent checks (not taken from the impl report):
 
 Test bodies were read, not just names; each asserts the values of its requirement.
 
-| Req | Covered by                                                              | Result |
-| --- | ----------------------------------------------------------------------- | ------ |
-| R1  | `tests/projects-schema.test.ts` → `declares_collection_configuration`   | [x]    |
-| R2  | `tests/projects-schema.test.ts` → `keeps_schema_module_free_of_astro_virtual_modules` | [x] |
-| R3  | `tests/projects-schema.test.ts` → `validates_project_frontmatter_contract` | [x] |
-| R4  | `tests/projects-schema.test.ts` → `defaults_featured_to_false`          | [x]    |
-| R5  | `tests/projects-schema.test.ts` → `sorts_projects_by_priority`          | [x]    |
-| R6  | `tests/projects-schema.test.ts` → `rejects_duplicate_priorities`        | [x]    |
-| R7  | `tests/projects-schema.test.ts` → `rejects_duplicate_ids`               | [x]    |
-| R8  | `tests/projects-section.test.ts` → `validates_projects_at_render_time` (+ independent build check) | [x] |
-| R9  | `tests/projects-content.test.ts` → `defines_four_project_entries`       | [x]    |
-| R10 | `tests/projects-content.test.ts` → `matches_seed_frontmatter`           | [x]    |
-| R11 | `tests/projects-content.test.ts` → `omits_github_url_for_aether_cloud`  | [x]    |
-| R12 | `tests/projects-content.test.ts` → `includes_seed_bodies`               | [x]    |
-| R13 | `tests/projects-content.test.ts` → `provides_raster_cover_files`        | [x]    |
-| R14 | `tests/projects-content.test.ts` → `declares_cover_webp_format`         | [x]    |
-| R15 | `tests/projects-content.test.ts` → `keeps_covers_within_weight_bound`   | [x]    |
-| R16 | `tests/projects-content.test.ts` → `declares_image_service_dependency`  | [x]    |
-| R17 | `tests/projects-section.test.ts` → `exposes_slate_600_token`            | [x]    |
-| R18 | `tests/projects-section.test.ts` → `renders_projects_section_after_hero`| [x]    |
-| R19 | `tests/projects-section.test.ts` → `styles_section_geometry`            | [x]    |
-| R20 | `tests/projects-section.test.ts` → `reuses_global_entry_animation`      | [x]    |
-| R21 | `tests/projects-section.test.ts` → `renders_section_header`             | [x]    |
-| R22 | `tests/projects-section.test.ts` → `styles_section_label`               | [x]    |
-| R23 | `tests/projects-section.test.ts` → `styles_section_label_rule`          | [x]    |
-| R24 | `tests/projects-section.test.ts` → `styles_section_title`               | [x]    |
-| R25 | `tests/projects-section.test.ts` → `styles_section_subtitle`            | [x]    |
-| R26 | `tests/projects-section.test.ts` → `styles_section_header_geometry`     | [x]    |
-| R27 | `tests/projects-section.test.ts` → `renders_featured_card_and_ordered_grid` | [x] |
-| R28 | `tests/projects-section.test.ts` → `styles_featured_card`               | [x]    |
-| R29 | `tests/projects-section.test.ts` → `styles_standard_card`               | [x]    |
-| R30 | `tests/projects-section.test.ts` → `styles_projects_grid`               | [x]    |
-| R31 | `tests/projects-section.test.ts` → `styles_card_hover`                  | [x]    |
-| R32 | `tests/projects-section.test.ts` → `renders_project_card_covers` (real `ImageMetadata`, Container API) | [x] |
-| R33 | `tests/projects-section.test.ts` → `styles_card_covers`                 | [x]    |
-| R34 | `tests/projects-section.test.ts` → `styles_card_titles` (+ `<h3>` in R32 test) | [x] |
-| R35 | `tests/projects-section.test.ts` → `styles_card_descriptions` (+ rendered text in R32 test) | [x] |
-| R36 | `tests/projects-section.test.ts` → `renders_technology_pills`           | [x]    |
-| R37 | `tests/projects-section.test.ts` → `styles_technology_pills`            | [x]    |
-| R38 | `tests/projects-section.test.ts` → `renders_website_links`              | [x]    |
-| R39 | `tests/projects-section.test.ts` → `renders_github_link_when_present`   | [x]    |
-| R40 | `tests/projects-section.test.ts` → `omits_github_link_when_absent`      | [x]    |
-| R41 | `tests/projects-section.test.ts` → `marks_external_links_with_accessible_names` | [x] |
-| R42 | `tests/projects-section.test.ts` → `renders_link_icons`                 | [x]    |
-| R43 | `tests/projects-section.test.ts` → `ships_no_client_javascript` + `tests/index.test.ts` → `ships_only_clipboard_enhancement` | [x] |
-| R44 | `tests/projects-section.test.ts` → `renders_single_h2` + `tests/index.test.ts` → `renders_exactly_one_h1` | [x] |
-| R45 | `tests/projects-section.test.ts` → `loads_project_collection_in_index` (source wiring + mocked page render) | [x] |
+| Req | Covered by                                                                                                                   | Result |
+| --- | ---------------------------------------------------------------------------------------------------------------------------- | ------ |
+| R1  | `tests/projects-schema.test.ts` → `declares_collection_configuration`                                                        | [x]    |
+| R2  | `tests/projects-schema.test.ts` → `keeps_schema_module_free_of_astro_virtual_modules`                                        | [x]    |
+| R3  | `tests/projects-schema.test.ts` → `validates_project_frontmatter_contract`                                                   | [x]    |
+| R4  | `tests/projects-schema.test.ts` → `defaults_featured_to_false`                                                               | [x]    |
+| R5  | `tests/projects-schema.test.ts` → `sorts_projects_by_priority`                                                               | [x]    |
+| R6  | `tests/projects-schema.test.ts` → `rejects_duplicate_priorities`                                                             | [x]    |
+| R7  | `tests/projects-schema.test.ts` → `rejects_duplicate_ids`                                                                    | [x]    |
+| R8  | `tests/projects-section.test.ts` → `validates_projects_at_render_time` (+ independent build check)                           | [x]    |
+| R9  | `tests/projects-content.test.ts` → `defines_four_project_entries`                                                            | [x]    |
+| R10 | `tests/projects-content.test.ts` → `matches_seed_frontmatter`                                                                | [x]    |
+| R11 | `tests/projects-content.test.ts` → `omits_github_url_for_aether_cloud`                                                       | [x]    |
+| R12 | `tests/projects-content.test.ts` → `includes_seed_bodies`                                                                    | [x]    |
+| R13 | `tests/projects-content.test.ts` → `provides_raster_cover_files`                                                             | [x]    |
+| R14 | `tests/projects-content.test.ts` → `declares_cover_webp_format`                                                              | [x]    |
+| R15 | `tests/projects-content.test.ts` → `keeps_covers_within_weight_bound`                                                        | [x]    |
+| R16 | `tests/projects-content.test.ts` → `declares_image_service_dependency`                                                       | [x]    |
+| R17 | `tests/projects-section.test.ts` → `exposes_slate_600_token`                                                                 | [x]    |
+| R18 | `tests/projects-section.test.ts` → `renders_projects_section_after_hero`                                                     | [x]    |
+| R19 | `tests/projects-section.test.ts` → `styles_section_geometry`                                                                 | [x]    |
+| R20 | `tests/projects-section.test.ts` → `reuses_global_entry_animation`                                                           | [x]    |
+| R21 | `tests/projects-section.test.ts` → `renders_section_header`                                                                  | [x]    |
+| R22 | `tests/projects-section.test.ts` → `styles_section_label`                                                                    | [x]    |
+| R23 | `tests/projects-section.test.ts` → `styles_section_label_rule`                                                               | [x]    |
+| R24 | `tests/projects-section.test.ts` → `styles_section_title`                                                                    | [x]    |
+| R25 | `tests/projects-section.test.ts` → `styles_section_subtitle`                                                                 | [x]    |
+| R26 | `tests/projects-section.test.ts` → `styles_section_header_geometry`                                                          | [x]    |
+| R27 | `tests/projects-section.test.ts` → `renders_featured_card_and_ordered_grid`                                                  | [x]    |
+| R28 | `tests/projects-section.test.ts` → `styles_featured_card`                                                                    | [x]    |
+| R29 | `tests/projects-section.test.ts` → `styles_standard_card`                                                                    | [x]    |
+| R30 | `tests/projects-section.test.ts` → `styles_projects_grid`                                                                    | [x]    |
+| R31 | `tests/projects-section.test.ts` → `styles_card_hover`                                                                       | [x]    |
+| R32 | `tests/projects-section.test.ts` → `renders_project_card_covers` (real `ImageMetadata`, Container API)                       | [x]    |
+| R33 | `tests/projects-section.test.ts` → `styles_card_covers`                                                                      | [x]    |
+| R34 | `tests/projects-section.test.ts` → `styles_card_titles` (+ `<h3>` in R32 test)                                               | [x]    |
+| R35 | `tests/projects-section.test.ts` → `styles_card_descriptions` (+ rendered text in R32 test)                                  | [x]    |
+| R36 | `tests/projects-section.test.ts` → `renders_technology_pills`                                                                | [x]    |
+| R37 | `tests/projects-section.test.ts` → `styles_technology_pills`                                                                 | [x]    |
+| R38 | `tests/projects-section.test.ts` → `renders_website_links`                                                                   | [x]    |
+| R39 | `tests/projects-section.test.ts` → `renders_github_link_when_present`                                                        | [x]    |
+| R40 | `tests/projects-section.test.ts` → `omits_github_link_when_absent`                                                           | [x]    |
+| R41 | `tests/projects-section.test.ts` → `marks_external_links_with_accessible_names`                                              | [x]    |
+| R42 | `tests/projects-section.test.ts` → `renders_link_icons`                                                                      | [x]    |
+| R43 | `tests/projects-section.test.ts` → `ships_no_client_javascript` + `tests/index.test.ts` → `ships_only_clipboard_enhancement` | [x]    |
+| R44 | `tests/projects-section.test.ts` → `renders_single_h2` + `tests/index.test.ts` → `renders_exactly_one_h1`                    | [x]    |
+| R45 | `tests/projects-section.test.ts` → `loads_project_collection_in_index` (source wiring + mocked page render)                  | [x]    |
 
 ## 3. Tasks completas
 
@@ -92,14 +92,14 @@ Test bodies were read, not just names; each asserts the values of its requiremen
 
 ## 4. Checkpoints
 
-| Checkpoint                  | Result | Notes                                                                                                                                  |
-| --------------------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------- |
-| C1 — harness complete       | [x]    | Base files + docs exist; `pnpm validate` exit 0.                                                                                        |
-| C2 — coherent state         | [x]    | Only `projects-section` `in_progress`; hero `done` with green tests; `progress/current.md` describes the active session.                |
-| C3 — architecture respected | [x]    | `src/pages/` only routes; components PascalCase; no `console.log`/TODO/FIXME/`any` in new code; no `client:*`; only the clipboard script. |
-| C4 — real verification      | [x]    | 10 test files / 87 tests green; `astro check` 0 errors.                                                                                 |
+| Checkpoint                  | Result | Notes                                                                                                                                                                                                                 |
+| --------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| C1 — harness complete       | [x]    | Base files + docs exist; `pnpm validate` exit 0.                                                                                                                                                                      |
+| C2 — coherent state         | [x]    | Only `projects-section` `in_progress`; hero `done` with green tests; `progress/current.md` describes the active session.                                                                                              |
+| C3 — architecture respected | [x]    | `src/pages/` only routes; components PascalCase; no `console.log`/TODO/FIXME/`any` in new code; no `client:*`; only the clipboard script.                                                                             |
+| C4 — real verification      | [x]    | 10 test files / 87 tests green; `astro check` 0 errors.                                                                                                                                                               |
 | C5 — session closure        | [x]    | No suspicious artifacts (`dist/`, `.astro/` gitignored); untracked files are the feature's own artifacts pending commit; feature correctly `in_progress`; `history.md` entry happens at session close (lifecycle §5). |
-| C6 — SDD                    | [x]    | Three spec files present; EARS with a note below; all tasks `[x]`; R1–R45 each covered by at least one concrete test.                   |
+| C6 — SDD                    | [x]    | Three spec files present; EARS with a note below; all tasks `[x]`; R1–R45 each covered by at least one concrete test.                                                                                                 |
 
 ## 5. Non-blocking observations (no rejection)
 
