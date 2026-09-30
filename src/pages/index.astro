@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HeroSection from '../components/HeroSection.astro';
 import ProjectsSection from '../components/ProjectsSection.astro';
+import TechnologiesSection from '../components/TechnologiesSection.astro';
 
 const PAGE_TITLE =
   'Carlos Olcina | Ingeniero Full-Stack y Arquitecto de Software IA';
@@ -11,9 +12,13 @@ const PAGE_DESCRIPTION =
 
 const projectEntries = await getCollection('projects');
 const projects = projectEntries.map((entry) => entry.data);
+
+const technologyEntries = await getCollection('technologies');
+const technologies = technologyEntries.map((entry) => entry.data);
 ---
 
 <BaseLayout title={PAGE_TITLE} description={PAGE_DESCRIPTION}>
   <HeroSection />
   <ProjectsSection projects={projects} />
+  <TechnologiesSection technologies={technologies} />
 </BaseLayout>
