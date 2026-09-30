@@ -72,7 +72,7 @@ describe('projects schema', () => {
       'schema: ({ image }) => buildProjectsSchema({ image }),',
     );
     expect(normalizedConfig).toContain(
-      'export const collections = { projects };',
+      'export const collections = { projects, technologies };',
     );
   });
 
