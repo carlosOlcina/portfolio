@@ -36,6 +36,13 @@
       "status": "done",
       "sdd": true,
       "description": "Bugfix for the done projects-section feature: the featured project card breaks at >=1024px. In src/components/ProjectCard.astro the >=1024px grid assigns .project-card__meta to grid-column 1/span 6 and .project-card__cover to grid-column 7/span 6 without pinning rows, so the DOM-ordered cover occupies row 1 and the meta is auto-placed into row 2, leaving the cover alone and a large empty gap. Expected: meta (left) and cover (right) side by side in the same row at >=1024px, stacked cover-first below that breakpoint, with a regression test for the responsive placement."
+    },
+    {
+      "id": 5,
+      "name": "ci-github-action",
+      "status": "done",
+      "sdd": true,
+      "description": "GitHub Actions CI workflow (.github/workflows/ci.yml) named \"CI\" that runs on pushes to all branches and on pull requests targeting main. Installs dependencies with pnpm using dependency caching, then runs typecheck (astro check), lint (eslint), format check (prettier --check, non-mutating) and tests (vitest). Excludes deployment, release automation, build/artifact publishing and any change to application code."
     }
   ]
 }

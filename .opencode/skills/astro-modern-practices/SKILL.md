@@ -53,16 +53,16 @@ Use the `astro-docs_search_astro_docs` tool from the `astro-docs` MCP server. It
 
 Query cheatsheet:
 
-| Topic                | Example query                                                        |
-| -------------------- | -------------------------------------------------------------------- |
-| Content collections  | `content collections glob loader defineCollection schema`            |
-| Live data            | `live content collections defineLiveCollection getLiveCollection`     |
-| Images               | `responsive images layout srcset sizes image.layout`                 |
-| Fonts                | `fonts API fontProviders local Font component cssVariable`           |
-| Config               | `configuration reference image security csp env prerender`           |
-| Breaking changes     | `upgrade to Astro v6 breaking changes`                               |
-| Error messages       | the literal error text, e.g. `content collection is missing a loader` |
-| Testing components   | `container API renderToString testing vitest`                        |
+| Topic               | Example query                                                         |
+| ------------------- | --------------------------------------------------------------------- |
+| Content collections | `content collections glob loader defineCollection schema`             |
+| Live data           | `live content collections defineLiveCollection getLiveCollection`     |
+| Images              | `responsive images layout srcset sizes image.layout`                  |
+| Fonts               | `fonts API fontProviders local Font component cssVariable`            |
+| Config              | `configuration reference image security csp env prerender`            |
+| Breaking changes    | `upgrade to Astro v6 breaking changes`                                |
+| Error messages      | the literal error text, e.g. `content collection is missing a loader` |
+| Testing components  | `container API renderToString testing vitest`                         |
 
 ### 3. Version-check every API before using it
 
@@ -73,17 +73,17 @@ Query cheatsheet:
 
 ### 4. Prefer these stable, current APIs (Astro 6)
 
-| Use this                                                                                          | Not this                                                                 |
-| ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| Use this                                                                                                        | Not this                                                                   |
+| --------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | `src/content.config.ts` with `defineCollection` + `glob()`/`file()` from `astro/loaders` + `z` from `astro/zod` | Legacy `type: 'content'` / `'data'` collections or `src/content/config.ts` |
-| `render(entry)` imported from `astro:content`                                                     | `entry.render()` (removed)                                               |
-| `<ClientRouter />` from `astro:transitions`                                                       | `<ViewTransitions />` (renamed in v5)                                    |
-| `<Image />` / `<Picture />` from `astro:assets`, `layout` prop for responsive `srcset`/`sizes`    | Unoptimized `<img>` for local assets                                     |
-| Fonts API: `fonts: [...]` in `astro.config.mjs` + `<Font cssVariable="..." />` from `astro:assets` | Manual `@font-face` + third-party font `<link>`s                        |
-| `astro:env` for environment variables                                                             | Raw `process.env` / untyped `import.meta.env`                            |
-| `security.csp` for Content Security Policy (stable in v6)                                        | `experimental.csp`                                                       |
-| Typed `Props` interfaces; `astro/tsconfigs/strict` (already configured)                           | `any`, implicit props, missing `include: [".astro/types.d.ts", "**/*"]`  |
-| `experimental_AstroContainer` from `astro/container` inside `tests/`                              | Container usage in application code                                      |
+| `render(entry)` imported from `astro:content`                                                                   | `entry.render()` (removed)                                                 |
+| `<ClientRouter />` from `astro:transitions`                                                                     | `<ViewTransitions />` (renamed in v5)                                      |
+| `<Image />` / `<Picture />` from `astro:assets`, `layout` prop for responsive `srcset`/`sizes`                  | Unoptimized `<img>` for local assets                                       |
+| Fonts API: `fonts: [...]` in `astro.config.mjs` + `<Font cssVariable="..." />` from `astro:assets`              | Manual `@font-face` + third-party font `<link>`s                           |
+| `astro:env` for environment variables                                                                           | Raw `process.env` / untyped `import.meta.env`                              |
+| `security.csp` for Content Security Policy (stable in v6)                                                       | `experimental.csp`                                                         |
+| Typed `Props` interfaces; `astro/tsconfigs/strict` (already configured)                                         | `any`, implicit props, missing `include: [".astro/types.d.ts", "**/*"]`    |
+| `experimental_AstroContainer` from `astro/container` inside `tests/`                                            | Container usage in application code                                        |
 
 Version-specific gotchas to remember for v6:
 
