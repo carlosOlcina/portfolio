@@ -81,7 +81,7 @@ describe('technologies schema', () => {
     );
     expect(normalizedConfig).toContain('schema: technologiesSchema,');
     expect(normalizedConfig).toContain(
-      'export const collections = { projects, technologies };',
+      'export const collections = { projects, technologies, profiles };',
     );
   });
 

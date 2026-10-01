@@ -64,6 +64,13 @@
       "status": "done",
       "sdd": false,
       "description": "Non-SDD design-sync micro-change ordered directly by the human: the updated Stitch design (project 12622281097258900550, screen bc9f65e63899496ab5f86a38e6ae93d8) removed the technical philosophy quote bar below the tech grid. Remove it from the frontend: drop the quote markup, the QUOTE_ICON_PATH constant and the scoped quote/badge styles in src/components/TechnologiesSection.astro; delete the five quote tests in tests/technologies-section.test.ts; and add a withdrawal amendment for R36-R40 in specs/technologies-section/requirements.md so the done technologies-section spec stays traceable (CHECKPOINTS C6). Excludes global tokens (--font-mono stays), any other section and any new dependency."
+    },
+    {
+      "id": 9,
+      "name": "contact-section",
+      "status": "done",
+      "sdd": true,
+      "description": "Fourth UI increment from the Stitch \"Full Chromatic Glass\" design: the contact section on the home page (anchor id=\"contact\") with the mockup header (\"Contacto y Colaboración\" eyebrow, \"Construyamos algo increíble juntos\" headline and intro), a left column with a click-to-copy direct email card (carlosolcina23@gmail.com, reusing src/scripts/clipboard.ts and the BaseLayout toast) and a \"Redes y Perfiles\" card rendered from a new Zod-validated JSON content collection `profiles` with exactly id, title and url per entry (seeded with realistic example entries from the mockup to be replaced by the human), and a right-column contact form (name, email and message fields plus \"Enviar Mensaje\" button) shipped as presentation-only UI: no submission handler and no success feedback, so a future feature can wire the message logic. Extracts the shared contact email into a single site constant imported by both HeroSection and ContactSection. Omits the mockup's Cal.com meeting-booking card entirely and excludes the experience/about section (the human has no experience data), nav, footer, WebGL shader and new dependencies. NOTE: re-implementation after a git mishap lost the tracked-file modifications; the spec and the untracked implementation files survived."
     }
   ]
 }

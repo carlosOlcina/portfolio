@@ -11,8 +11,8 @@ import {
   type ClipboardWriter,
   type ToastView,
 } from '../src/scripts/clipboard';
+import { CONTACT_EMAIL } from '../src/site-constants';
 
-const CONTACT_EMAIL = 'carlosolcina23@gmail.com';
 const sourceRoot = new URL('../src/', import.meta.url);
 
 const clipboardSource = readFileSync(
@@ -90,8 +90,13 @@ describe('clipboard enhancement', () => {
     expect(clipboardSource).toContain('writeText');
   });
 
-  it('wires_copy_listener_to_secondary_cta', async () => {
+  it('imports_shared_contact_email', async () => {
     const compactHeroSource = heroSource.replace(/\s+/g, '');
+
+    expect(compactHeroSource).toContain(
+      "import{CONTACT_EMAIL}from'../site-constants';",
+    );
+    expect(heroSource).toContain('data-email={CONTACT_EMAIL}');
     expect(compactHeroSource).toContain(
       'document.querySelector<HTMLButtonElement>(',
     );
@@ -100,6 +105,7 @@ describe('clipboard enhancement', () => {
     expect(heroSource).toContain('button.dataset.email');
     expect(heroSource).toContain("from '../scripts/clipboard'");
     expect(heroSource).not.toContain('onclick=');
+    expect(heroSource).not.toContain('carlosolcina23@gmail.com');
 
     const container = await AstroContainer.create();
     const html = await container.renderToString(HeroSection);
@@ -174,11 +180,15 @@ describe('clipboard enhancement', () => {
     );
 
     expect(occurrences).toHaveLength(1);
-    expect(heroSource).toContain(
-      "const CONTACT_EMAIL = 'carlosolcina23@gmail.com';",
+
+    const constantsSource = readFileSync(
+      new URL('site-constants.ts', sourceRoot),
+      'utf8',
     );
-    expect(heroSource).toContain('data-email={CONTACT_EMAIL}');
-    expect(heroSource).toContain('button.dataset.email');
+    expect(constantsSource).toContain(
+      "export const CONTACT_EMAIL = 'carlosolcina23@gmail.com';",
+    );
+    expect(heroSource).not.toContain('carlosolcina23@gmail.com');
     expect(clipboardSource).not.toContain('carlosolcina23@gmail.com');
 
     const container = await AstroContainer.create();

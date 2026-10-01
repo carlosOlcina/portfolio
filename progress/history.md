@@ -270,3 +270,69 @@ limpio` / `Filosofía Técnica` / `tech-stack__quote` / `QUOTE_ICON_PATH`; and a
 - Remaining steps: committer agent and PR to `main` from
   `feat/remove-tecnologies-text` (branch clean at `4ca167f`, level with
   `origin/main`).
+
+## 2026-10-01 — contact-section (id 9)
+
+- Fourth UI increment of the "Full Chromatic Glass" design: the contact section
+  on the home page (`<section id="contact">`), rendered immediately after
+  `#tech-stack`; spec at `specs/contact-section/`. Human decisions: delete the
+  Cal.com booking card, keep the form presentation-only, one shared contact
+  email, new `profiles` collection, skip the experience/about section.
+- Data: JSON content collection `profiles` (glob loader over
+  `src/content/profiles/*.json`, strict Zod schema with exactly `id` UUID,
+  `title` and `url`; `assertUniqueProfiles`/`sortProfiles` in
+  `src/content/profiles-schema.ts` order by title and fail the render — and
+  `astro build` — with `Duplicate profile id: <id>`). Three seed entries
+  (`github.json`, `linkedin.json`, `x.json`) with placeholder URLs
+  (`https://github.com`, `https://linkedin.com`, `https://x.com`) for the human
+  to replace later; entry ids come from file names, the UUID lives in the data.
+- Shared constant: `CONTACT_EMAIL = 'carlosolcina23@gmail.com'` lives once in
+  `src/site-constants.ts` (single literal under `src/`) and is imported by both
+  `HeroSection.astro` and the new section.
+- UI: `ContactSection.astro` renders the header (eyebrow, `Construyamos algo
+increíble juntos` with explicit `{' '}` spaces, intro), a left options column
+  with a keyboard-operable click-to-copy email card (`#copy-email-contact-btn`,
+  reusing `src/scripts/clipboard.ts` and the BaseLayout `#toast`) plus the
+  `Redes y Perfiles` pills, and a right presentation-only form (name, email,
+  message, `Enviar Mensaje`, `required`, no `action`/`method`/handler/hooks and
+  no success banner). Four Material Symbols ligatures reproduced as exact inline
+  SVGs; all styles scoped with existing tokens; the second bundled clipboard
+  script and still zero islands.
+- Tests: 192/192 green across 17 files on the original tree, tracing R1–R42 with
+  new `tests/profiles-schema.test.ts`, `tests/profiles-content.test.ts` and
+  `tests/contact-section.test.ts`, plus updated `tests/clipboard.test.ts`,
+  `tests/index.test.ts` and `tests/projects-section.test.ts` (collection-aware
+  `vi.mock('astro:content')`, two-script budget).
+- Deviation (approved as a mechanical consequence of R1): the existing
+  `tests/projects-schema.test.ts` and `tests/technologies-schema.test.ts` now
+  assert `collections = { projects, technologies, profiles }`; `design.md` §3
+  had omitted them from its modified list. No Container API fallback was needed.
+- Verification: `pnpm format`, `pnpm lint`, `pnpm check` (0 errors), `pnpm test`
+  and `pnpm build` green; build negative spot-checks (duplicate profile id,
+  unknown JSON key) fail loudly; Playwright check over `pnpm preview` confirmed
+  desktop 5/7 grid and mobile stack, email-card hover, native focus outline plus
+  ring, reduced-motion collapse, the copy toast with
+  `Correo copiado al portapapeles`, and the absence of the Cal.com card.
+- Reviewer verdict: APPROVED (`progress/review_contact-section.md`), no required
+  fixes; the non-blocking prose miscount (`39/39` → `37/37`) was applied at
+  session close.
+- **Git mishap and re-implementation:** the branch `feat/contact-section` was
+  recreated from `main` (`4ca167f`) and all tracked-file modifications were
+  lost; only the untracked artifacts survived (spec, impl/review reports,
+  `src/site-constants.ts`, `src/content/profiles-schema.ts`, the three seed
+  JSONs, `ContactSection.astro` and the three new test files). The tracked
+  deltas were re-applied exactly on this base: `src/content.config.ts`,
+  `HeroSection.astro`, `index.astro`, `tests/clipboard.test.ts`,
+  `tests/index.test.ts`, `tests/projects-section.test.ts`,
+  `tests/projects-schema.test.ts` and `tests/technologies-schema.test.ts`.
+  This branch is plain `main`, so feature 8 (`remove-technologies-quote`) is
+  absent and its five quote tests still run here; the surviving contact tests
+  needed no adaptation and no quote code/test was touched. Re-verified green:
+  17 files / 197 tests, check 0 errors, build with the section and two bundled
+  scripts in `dist/index.html`.
+- Reviewer verdict on the re-applied tree: APPROVED
+  (`progress/review_contact-section.md`, "Cambios requeridos: Ninguno").
+- Evidence: `progress/impl_contact-section.md` (including the
+  "Re-implementation after git mishap" section) and
+  `progress/review_contact-section.md`.
+- `pnpm validate` green: lint + check + test (17 files, 197/197) + build.
