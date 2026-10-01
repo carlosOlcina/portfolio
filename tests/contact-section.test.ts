@@ -627,8 +627,9 @@ describe('contact section', () => {
   it('omits_excluded_sections', async () => {
     const html = normalize(await renderPage());
 
+    expect(html.match(/<footer\b/g)).toHaveLength(1);
+    expect(html).toContain('<footer class="footer"');
     expect(html).not.toMatch(/<nav\b/);
-    expect(html).not.toMatch(/<footer\b/);
 
     for (const fileUrl of collectSourceFiles(sourceRoot)) {
       const content = readFileSync(fileUrl, 'utf8').toLowerCase();
