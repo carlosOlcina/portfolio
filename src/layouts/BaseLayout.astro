@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import FooterSection from '../components/FooterSection.astro';
 
 interface Props {
   title: string;
@@ -31,6 +32,7 @@ const { title, description } = Astro.props;
         <slot />
       </div>
     </main>
+    <FooterSection />
     <div class="toast" id="toast" role="status" aria-live="polite">
       <svg
         class="toast__icon"

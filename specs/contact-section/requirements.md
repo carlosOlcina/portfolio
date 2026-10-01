@@ -387,7 +387,7 @@ The system MUST NOT render the mockup's Cal.com booking card: no `Reservar Reuni
 
 The system MUST NOT add the floating nav, the footer, the about/experience section or the WebGL shader: the home page keeps no `<nav>`/`<footer>` element and the `src/` tree gains no canvas/shader code.
 
-**Verification:** `tests/contact-section.test.ts` → `omits_excluded_sections` (renders the page and asserts no `<nav>`/`<footer>`; recursively scans `src/` for `<canvas`/`shader`).
+**Verification:** `tests/contact-section.test.ts` → `omits_excluded_sections` (amended 2026-10-01: renders the page and asserts exactly one `<footer>` with class `footer` and no `<nav>`; recursively scans `src/` for `<canvas`/`shader`).
 
 ### R42 — No new dependencies
 
@@ -443,3 +443,13 @@ The system MUST NOT add or remove dependencies: the `dependencies` and `devDepen
 | R40         | `tests/contact-section.test.ts`  | `omits_calcom_booking_card`                                                                          |
 | R41         | `tests/contact-section.test.ts`  | `omits_excluded_sections`                                                                            |
 | R42         | `tests/contact-section.test.ts`  | `keeps_dependencies_unchanged`                                                                       |
+
+## Amendments
+
+### 2026-10-01 — Footer no longer excluded (R41 footer clause superseded)
+
+The `footer-section` feature (id 10) adds the site footer to the page shell, so the footer clause of R41 is superseded:
+
+- **R41 effective text:** the system MUST NOT add the floating nav, the about/experience section or the WebGL shader; the home page keeps no `<nav>` element and exactly one `<footer>` element (owned by `src/components/FooterSection.astro`), and the `src/` tree gains no canvas/shader code. The no-`<footer>` clause is no longer in force.
+- **Verification updated:** `tests/contact-section.test.ts > omits_excluded_sections` now asserts exactly one `<footer>` (class `footer`) and keeps asserting no `<nav>` and no `<canvas`/`shader` under `src/`.
+- **No requirement is renumbered**; R1–R42 keep their coverage except the footer clause above, and the header bullet that listed the footer as out of scope is superseded from this date.

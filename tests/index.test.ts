@@ -217,6 +217,7 @@ describe('index page', () => {
       'components/ProjectCard.astro',
       'components/TechnologiesSection.astro',
       'components/ContactSection.astro',
+      'components/FooterSection.astro',
     ].map((relativePath) =>
       readFileSync(new URL(relativePath, sourceRoot), 'utf8'),
     );

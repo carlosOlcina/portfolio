@@ -336,3 +336,57 @@ increíble juntos` with explicit `{' '}` spaces, intro), a left options column
   "Re-implementation after git mishap" section) and
   `progress/review_contact-section.md`.
 - `pnpm validate` green: lint + check + test (17 files, 197/197) + build.
+
+## 2026-10-01 — footer-section (id 10)
+
+- Fifth UI increment of the "Full Chromatic Glass" design: the site footer,
+  site chrome owned by the page shell (`BaseLayout.astro` renders
+  `<FooterSection />` immediately after `</main>` and before `#toast`, outside
+  `.site-container`; `index.astro` stays untouched). Spec at
+  `specs/footer-section/`.
+- Component: new `src/components/FooterSection.astro`, a static presentational
+  component with no `Props`, no script, no island and no inline handler.
+  Translucent glass bar (`rgba(255, 255, 255, 0.4)`, `backdrop-filter:
+blur(40px)`, `border-top: 1px solid rgba(199, 210, 254, 0.35)`, `margin-top:
+var(--space-margin)`) with a `max-w-5xl` (64rem) inner container that stacks and
+  centers below 768px and becomes a row with the identity `flex-start` and meta
+  `flex-end` from 768px up.
+- Content: identity block (`Carlos Olcina` italic headline-sm slate-900,
+  `Ingeniero Senior Full-Stack y Sistemas de IA` body-sm slate-600,
+  `© 2025 Carlos Olcina. Todos los derechos reservados.` body-sm slate-400 —
+  year kept verbatim per the human directive) and meta block with the exact
+  Material Symbols `schedule` inline SVG (16×16, no icon font) plus the location
+  line. Human decisions honored: location reads
+  `Alicante, España (CET / UTC+1)` instead of the mockup's `València`, and the
+  mockup's social row ships as only the email link
+  (`mailto:carlosolcina23@gmail.com` from the shared `CONTACT_EMAIL` in
+  `src/site-constants.ts`; no GitHub/X/LinkedIn, no dot separators, no
+  duplicated literal, no `alex@example.com`).
+- Amendment: dated `## Amendments` section in
+  `specs/contact-section/requirements.md` supersedes only R41's footer clause
+  (the page keeps no `<nav>` and exactly one `<footer>`; the
+  no-about/experience and no-WebGL-shader exclusions stay in force); R41's
+  verification line points at the amended expectations and R1–R42 keep their
+  ids.
+- Tests: new `tests/footer-section.test.ts` (22 tests tracing R1–R22);
+  `tests/contact-section.test.ts > omits_excluded_sections` flips from "no
+  `<footer>`" to exactly one `<footer class="footer">`; `tests/index.test.ts >
+ships_only_clipboard_enhancement` extends its page-source scan to
+  `FooterSection.astro` and still expects exactly two bundled clipboard scripts.
+  Full suite: 18 files / 214 tests green (baseline 17 / 192).
+- Verification: `pnpm validate` green end to end; `pnpm exec prettier --check .`
+  clean; `dist/index.html` assertions (order `</main>` → footer → toast,
+  identity texts, Alicante line, `mailto:` link, exactly two scripts, no
+  `València`/social links in the footer); preview + Playwright confirmed the
+  computed glass shell, the 768px responsive switch, the email hover
+  `rgb(53, 37, 205)` and the native focus outline. The email literal still
+  appears exactly once under `src/`.
+- Reviewer verdict: APPROVED (`progress/review_footer-section.md`, "Cambios
+  requeridos: Ninguno"); implementation evidence in
+  `progress/impl_footer-section.md`. Non-blocking note kept for future scans:
+  `dist/index.html` legitimately contains social URLs from the ContactSection
+  profiles collection, so any page-wide "no social URLs" check must scope to the
+  footer.
+- Post-review update (same day): the human ordered the copyright year updated
+  to 2026; component, tests and spec amended; see
+  `progress/commit_footer-year-2026.md`.
