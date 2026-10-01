@@ -59,6 +59,13 @@
       "description": "Bugfix exposed by the new CI on PR #7: after main bumped to Astro 7 (astro ^7.2.8, PR #5), the compiler trims the whitespace between the hero headline text and the accent span, so HeroSection renders \"intersección de<span>ingeniería\" and tests/hero.test.ts > renders_verbatim_hero_texts fails, a real visual regression (\"deingeniería\"). Emit the space explicitly in src/components/HeroSection.astro so the strict verbatim contract holds under the upgraded compiler. Also sync feat/create-github-actions with main: merge origin/main, resolve the feature_list.json and progress/history.md conflicts (technologies-section keeps id 5, ci-github-action becomes id 6 and this fix takes id 7, updating the affected references), reinstall dependencies with Astro 7 and leave pnpm validate green so PR #7 turns green and becomes mergeable. Excludes CI workflow changes: .github/workflows/ci.yml and tests/ci-workflow.test.ts already pass."
     },
     {
+      "id": 8,
+      "name": "remove-technologies-quote",
+      "status": "done",
+      "sdd": false,
+      "description": "Non-SDD design-sync micro-change ordered directly by the human: the updated Stitch design (project 12622281097258900550, screen bc9f65e63899496ab5f86a38e6ae93d8) removed the technical philosophy quote bar below the tech grid. Remove it from the frontend: drop the quote markup, the QUOTE_ICON_PATH constant and the scoped quote/badge styles in src/components/TechnologiesSection.astro; delete the five quote tests in tests/technologies-section.test.ts; and add a withdrawal amendment for R36-R40 in specs/technologies-section/requirements.md so the done technologies-section spec stays traceable (CHECKPOINTS C6). Excludes global tokens (--font-mono stays), any other section and any new dependency."
+    },
+    {
       "id": 9,
       "name": "contact-section",
       "status": "done",

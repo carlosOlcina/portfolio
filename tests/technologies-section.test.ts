@@ -83,9 +83,6 @@ const CATEGORY_ICON_PATHS: Record<TechnologyCategory, string> = {
     'M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm0-80h640v-400H160v400Zm140-40-56-56 103-104-104-104 57-56 160 160-160 160Zm180 0v-80h240v80H480Z',
 };
 
-const QUOTE_ICON_PATH =
-  'm438-338 226-226-57-57-169 169-84-84-57 57 141 141Zm42 258q-139-35-229.5-159.5T160-516v-244l320-120 320 120v244q0 152-90.5 276.5T480-80Zm0-84q104-33 172-132t68-220v-189l-240-90-240 90v189q0 121 68 220t172 132Zm0-316Z';
-
 let fixtureCounter = 0;
 
 function createTechnology(
@@ -139,31 +136,6 @@ function extractResponsiveRule(
     mediaIndex,
     normalized.indexOf('}', mediaIndex + mediaMarker.length) + 1,
   );
-}
-
-function extractMediaBlock(source: string, breakpoint: number): string {
-  const normalized = normalize(source);
-  const marker = `@media (min-width: ${breakpoint}px)`;
-  const markerIndex = normalized.indexOf(marker);
-  if (markerIndex === -1) {
-    throw new Error(`Media query not found: ${marker}`);
-  }
-
-  const openIndex = normalized.indexOf('{', markerIndex);
-  let depth = 0;
-
-  for (let index = openIndex; index < normalized.length; index += 1) {
-    if (normalized[index] === '{') {
-      depth += 1;
-    } else if (normalized[index] === '}') {
-      depth -= 1;
-      if (depth === 0) {
-        return normalized.slice(openIndex + 1, index);
-      }
-    }
-  }
-
-  throw new Error(`Unbalanced media query: ${marker}`);
 }
 
 function expectDeclarations(
@@ -571,108 +543,6 @@ describe('technologies section', () => {
       expect(item).toContain('height="20"');
       expect(item).toContain('loading="lazy"');
     }
-  });
-
-  it('renders_quote_bar', async () => {
-    const html = normalize(await renderSection([createTechnology()]));
-
-    expect(html).toContain('class="tech-stack__quote-main"');
-    expect(html).toContain('class="tech-stack__quote-text"');
-    expect(html).toContain(
-      '“Código limpio, arquitectura escalable y rendimiento sin fricción.”',
-    );
-    expect(html).toContain('class="tech-stack__badge"');
-    expect(html).toMatch(
-      /class="tech-stack__badge"[^>]*>Filosofía Técnica<\/span>/,
-    );
-  });
-
-  it('styles_quote_bar', () => {
-    expectDeclarations(extractRule(sectionSource, '.tech-stack__quote'), [
-      ['display', 'flex'],
-      ['flex-direction', 'column'],
-      ['align-items', 'flex-start'],
-      ['justify-content', 'space-between'],
-      ['gap', '1rem'],
-      ['padding', '1.5rem'],
-      ['border-radius', 'var(--radius-2xl)'],
-      ['background-color', 'rgba(99, 102, 241, 0.1)'],
-      ['-webkit-backdrop-filter', 'blur(12px)'],
-      ['backdrop-filter', 'blur(12px)'],
-      ['border', '1px solid rgba(199, 210, 254, 0.5)'],
-      ['box-shadow', '0 8px 30px rgba(79, 70, 229, 0.05)'],
-      ['transition', 'all 300ms cubic-bezier(0.4, 0, 0.2, 1)'],
-    ]);
-
-    const quoteRow = canonical(
-      extractRule(extractMediaBlock(sectionSource, 640), '.tech-stack__quote'),
-    );
-    expect(quoteRow).toContain(canonical('flex-direction: row;'));
-    expect(quoteRow).toContain(canonical('align-items: center;'));
-
-    expectDeclarations(extractRule(sectionSource, '.tech-stack__quote:hover'), [
-      ['border-color', 'rgba(165, 180, 252, 0.8)'],
-      ['box-shadow', '0 12px 36px rgba(79, 70, 229, 0.08)'],
-    ]);
-
-    expectDeclarations(extractRule(sectionSource, '.tech-stack__quote-main'), [
-      ['display', 'flex'],
-      ['align-items', 'center'],
-      ['gap', '0.875rem'],
-    ]);
-
-    expectDeclarations(extractRule(sectionSource, '.tech-stack__quote-icon'), [
-      ['width', '24px'],
-      ['height', '24px'],
-      ['flex-shrink', '0'],
-      ['color', 'var(--color-primary)'],
-    ]);
-  });
-
-  it('styles_quote_text', () => {
-    expectDeclarations(extractRule(sectionSource, '.tech-stack__quote-text'), [
-      ['font-family', 'var(--font-headline)'],
-      ['font-size', 'var(--text-headline-sm-size)'],
-      ['line-height', 'var(--text-headline-sm-line-height)'],
-      ['letter-spacing', 'var(--text-headline-sm-letter-spacing)'],
-      ['font-weight', 'var(--text-headline-sm-weight)'],
-      ['font-style', 'italic'],
-      ['color', 'var(--color-primary)'],
-    ]);
-  });
-
-  it('renders_quote_icon', async () => {
-    const html = await renderSection([createTechnology()]);
-    const svg =
-      /<svg class="tech-stack__quote-icon"[^>]*>[\s\S]*?<\/svg>/.exec(
-        html,
-      )?.[0] ?? '';
-
-    expect(svg).toContain('aria-hidden="true"');
-    expect(svg).toContain('viewBox="0 -960 960 960"');
-    expect(svg).toContain('width="24"');
-    expect(svg).toContain('height="24"');
-    expect(svg).toContain('fill="currentColor"');
-    expect(svg).toContain(`d="${QUOTE_ICON_PATH}"`);
-  });
-
-  it('styles_quote_badge', () => {
-    expectDeclarations(extractRule(sectionSource, '.tech-stack__badge'), [
-      ['font-family', 'var(--font-mono)'],
-      ['font-size', 'var(--text-label-sm-size)'],
-      ['line-height', 'var(--text-label-sm-line-height)'],
-      ['font-weight', 'var(--text-label-sm-weight)'],
-      ['letter-spacing', '0.16em'],
-      ['text-transform', 'uppercase'],
-      ['white-space', 'nowrap'],
-      ['color', 'var(--color-primary)'],
-      ['background-color', 'rgba(53, 37, 205, 0.1)'],
-      ['border', '1px solid rgba(53, 37, 205, 0.25)'],
-      ['padding', '0.375rem 0.875rem'],
-      ['border-radius', 'var(--radius-full)'],
-      ['-webkit-backdrop-filter', 'blur(12px)'],
-      ['backdrop-filter', 'blur(12px)'],
-    ]);
   });
 
   it('ships_no_client_javascript', () => {
