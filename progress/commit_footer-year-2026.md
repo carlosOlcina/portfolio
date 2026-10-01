@@ -3,7 +3,7 @@
 - **Scope:** follow-up to feature 10 `footer-section` on the same branch and
   PR after the human overrode the year-untouched decision: the static
   copyright text becomes `© 2026 Carlos Olcina. Todos los derechos
-  reservados.` (no dynamic year, no new code paths).
+reservados.` (no dynamic year, no new code paths).
 - **Committer:** commits agent, 2026-10-01.
 - **Pre-commit check:** `pnpm validate` green — lint + `astro check`
   (37 files, 0 errors) + `pnpm test` (18 files, 214/214 tests) + build;
