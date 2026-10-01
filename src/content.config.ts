@@ -1,6 +1,7 @@
 import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { buildProjectsSchema } from './content/projects-schema';
+import { profilesSchema } from './content/profiles-schema';
 import { technologiesSchema } from './content/technologies-schema';
 
 const projects = defineCollection({
@@ -13,4 +14,9 @@ const technologies = defineCollection({
   schema: technologiesSchema,
 });
 
-export const collections = { projects, technologies };
+const profiles = defineCollection({
+  loader: glob({ base: './src/content/profiles', pattern: '**/*.json' }),
+  schema: profilesSchema,
+});
+
+export const collections = { projects, technologies, profiles };
