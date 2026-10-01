@@ -227,3 +227,46 @@
 - **Human verification pending:** after the committer pushes, the PR #7 push and
   `pull_request` runs must be green and the PR mergeable — Actions cannot run
   offline in this environment.
+
+## 2026-09-30 — remove-technologies-quote
+
+- Non-SDD design-sync micro-change ordered directly by the human (feature id 8,
+  `"sdd": false`, no spec folder): the updated Stitch design (project
+  `12622281097258900550`, screen `bc9f65e63899496ab5f86a38e6ae93d8`) deleted the
+  "technical philosophy" quote bar below the technologies grid and is the
+  authoritative source of truth; `/tmp/opencode/stitch-tech/screen.html` keeps
+  only an orphan comment where the bar used to be (old mockup bar with the quote
+  text, `verified_user` icon and badge:
+  `specs/projects-section/references/projects-section.html:1711-1731`).
+- Removed from `src/components/TechnologiesSection.astro` (pure deletion, 89
+  lines, 0 additions): the `<div class="tech-stack__quote">` markup with the
+  `Código limpio…` quote text, the `QUOTE_ICON_PATH` constant and every scoped
+  quote/badge style (`.tech-stack__quote`, its `@media (min-width: 640px)` block,
+  `:hover`, `-main`, `-icon`, `-text` and `.tech-stack__badge`). The section
+  shell, header, grid, category cards, chips, icons and
+  `animate-fade-in-up animation-delay-200` are behaviorally unchanged.
+- Removed from `tests/technologies-section.test.ts` (pure deletion, 130 lines,
+  0 additions): `renders_quote_bar`, `styles_quote_bar`, `styles_quote_text`,
+  `renders_quote_icon` and `styles_quote_badge`, plus the now-unused local
+  `QUOTE_ICON_PATH` and `extractMediaBlock` helper (the homonym in
+  `tests/projects-section.test.ts` is independent and stays). The file drops
+  27 → 22 tests and the suite 157 → 152.
+- Spec traceability: a final `## Amendments` section was appended to
+  `specs/technologies-section/requirements.md` (12 lines, no renumbering):
+  R36–R40 withdrawn; tasks 6.4/6.5 and the quote mentions in 9.4/9.5 superseded
+  (kept `[x]` as historical record); the id-5 coverage table "closing quote" item
+  superseded; R1–R35 and R41–R44 keep their coverage; `--font-mono` (R18) stays
+  in `src/styles/tokens.css` as a global token even though its quote-badge
+  consumer is gone.
+- Reviewer verdict: APPROVED (`progress/review_remove-technologies-quote.md`),
+  no required changes; implementation evidence in
+  `progress/impl_remove-technologies-quote.md`.
+- Leader independent verification: `pnpm validate` green (14 files / 152 tests);
+  post-build sweep of `src`, `tests` and `dist/index.html` finds no `Código
+limpio` / `Filosofía Técnica` / `tech-stack__quote` / `QUOTE_ICON_PATH`; and a
+  Playwright check over `pnpm preview` confirmed `#tech-stack` renders with no
+  quote text, badge or quote classes, 4 category titles, 26 chips and
+  `.tech-stack__grid` as the last child of `.tech-stack__inner`.
+- Remaining steps: committer agent and PR to `main` from
+  `feat/remove-tecnologies-text` (branch clean at `4ca167f`, level with
+  `origin/main`).
