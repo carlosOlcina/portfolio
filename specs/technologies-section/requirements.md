@@ -524,3 +524,15 @@ WHEN the home page renders, the system MUST keep exactly one `<h1>` and exactly 
 | svgl SVG logos vendored in `public/icons/logos/` and referenced by local root-relative `iconUrl` paths (no runtime fetch, no CDN) | R3, R14–R17, R35            |
 | Mockup's tech-stack bento glass section including its four categories, chips and closing quote                                    | R23–R40                     |
 | Excludes nav, about/contact sections, footer, WebGL shader and client-side JavaScript                                             | Out of scope list, R41, R44 |
+
+## Amendments
+
+### 2026-09-30 — Closing quote bar removed from the updated design (R36–R40 withdrawn)
+
+On 2026-09-30 the updated Stitch design (project `12622281097258900550`, screen `bc9f65e63899496ab5f86a38e6ae93d8`) removed the closing quote bar that sat below the technologies grid, so the frontend was synced to that source of truth:
+
+- **R36–R40 are withdrawn.** Their markup, the `QUOTE_ICON_PATH` constant and every scoped quote/badge style were deleted from `src/components/TechnologiesSection.astro`, and the five verifying tests (`renders_quote_bar`, `styles_quote_bar`, `styles_quote_text`, `renders_quote_icon`, `styles_quote_badge`) were deleted from `tests/technologies-section.test.ts`. No empty bar, leftover comment or orphan selector remains.
+- **Tasks 6.4 and 6.5 are superseded** (quote bar rendering and its scoped styles); **the quote mentions in tasks 9.4 and 9.5 are superseded** as well. All four stay marked `[x]` as historical record of the original increment.
+- **The "closing quote" item in the id-5 "Feature description coverage" table is superseded.**
+- **Everything else in this spec is unchanged:** no requirement is renumbered, and R1–R35 and R41–R44 keep their stated coverage.
+- **`--font-mono` (R18) stays** in `src/styles/tokens.css` as a global token even though its only consumer (the quote badge) is gone; its test (`exposes_font_mono_token`) is kept.
