@@ -387,3 +387,6 @@ ships_only_clipboard_enhancement` extends its page-source scan to
   `dist/index.html` legitimately contains social URLs from the ContactSection
   profiles collection, so any page-wide "no social URLs" check must scope to the
   footer.
+- Post-review update (same day): the human ordered the copyright year updated
+  to 2026; component, tests and spec amended; see
+  `progress/commit_footer-year-2026.md`.

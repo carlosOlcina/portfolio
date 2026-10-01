@@ -87,3 +87,16 @@ Updated and passing: `tests/contact-section.test.ts > omits_excluded_sections`, 
 ## 7. Blockers
 
 None. The Container API rendered the page without needing the design.md §8 fallback; the placement tests run against the real page render.
+
+## Post-review update (2026-10-01) — copyright year
+
+The human overrode the earlier year-untouched decision the same day: the static copyright text is now `© 2026 Carlos Olcina. Todos los derechos reservados.` (no dynamic year, no new code paths, feature status unchanged):
+
+- `src/components/FooterSection.astro` — year changed to 2026 (only change in the component).
+- `tests/footer-section.test.ts > renders_identity_texts` — regex expectation updated to `© 2026`; no other test changed.
+- `specs/footer-section/requirements.md` — R5 verification annotated `(amended 2026-10-01: the rendered copyright year is 2026)` plus a dated `## Amendments` entry giving R5's effective text and superseding the year-untouched observations; original `© 2025` statements kept as history.
+- `specs/footer-section/design.md` — text contract updated to 2026; the superseded mentions in §1, decision 12 and the rejected-alternatives table annotated with the amendment date.
+- `feature_list.json` — id 10 description year updated to 2026 (prettier-formatted).
+- `progress/history.md` — appended note; this section in `progress/impl_footer-section.md`.
+
+Verification: `pnpm validate` green (lint + `astro check` + tests + build), `pnpm exec prettier --check .` green, no `2025` left under `src/` or `tests/`, and the rendered footer text is exactly `© 2026 Carlos Olcina. Todos los derechos reservados.` with zero client JavaScript.

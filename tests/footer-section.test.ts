@@ -198,7 +198,7 @@ describe('footer section', () => {
       /<p class="footer__role"[^>]*>Ingeniero Senior Full-Stack y Sistemas de IA<\/p>/,
     );
     expect(html).toMatch(
-      /<p class="footer__copyright"[^>]*>© 2025 Carlos Olcina\. Todos los derechos reservados\.<\/p>/,
+      /<p class="footer__copyright"[^>]*>© 2026 Carlos Olcina\. Todos los derechos reservados\.<\/p>/,
     );
   });
 

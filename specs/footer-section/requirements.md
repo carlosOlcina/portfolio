@@ -56,7 +56,7 @@ The system MUST render the identity block with the exact structure and verbatim 
 | `.footer__role`      | `Ingeniero Senior Full-Stack y Sistemas de IA`         |
 | `.footer__copyright` | `© 2025 Carlos Olcina. Todos los derechos reservados.` |
 
-**Verification:** `tests/footer-section.test.ts` → `renders_identity_texts`.
+**Verification:** `tests/footer-section.test.ts` → `renders_identity_texts` (amended 2026-10-01: the rendered copyright year is 2026).
 
 ### R6 — Identity styles
 
@@ -264,3 +264,14 @@ The system MUST NOT add or remove dependencies: the `dependencies` and `devDepen
 | 5. Footer owned by the page shell (`BaseLayout`), rendered after `</main>`                      | R2, R3               |
 | 6. Amendment/withdrawal of the contact-section footer exclusion                                 | R20, R21             |
 | 7. Zero-JS footer, no new dependencies                                                          | R18, R19, R23        |
+
+## Amendments
+
+### 2026-10-01 — Copyright year updated to 2026 (human order)
+
+The human ordered the footer copyright year updated to 2026 on the same day the feature was implemented. R5 is amended:
+
+- **R5 effective text (copyright row):** `.footer__copyright` MUST render `© 2026 Carlos Olcina. Todos los derechos reservados.` (verbatim and static, no dynamic year); `.footer__name` and `.footer__role` keep the texts above, and the `© 2025` wording earlier in this file is kept as history.
+- **Verification updated:** `tests/footer-section.test.ts > renders_identity_texts` now asserts the `© 2026` text; the R5 verification note above is annotated with the amendment date.
+- **Superseded observation:** the "changes to the copyright year" clause of the out-of-scope bullet and the year-untouched observation in human decision 4 are superseded from this date.
+- **No requirement is renumbered**; R1–R23 keep their coverage and ids.

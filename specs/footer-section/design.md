@@ -4,7 +4,7 @@
 
 Fifth UI increment of the portfolio: the site footer of the Stitch design **Full Chromatic Glass**, sourced from `specs/hero-section/references/chromatic-glass.html` lines 2159–2217 (authoritative markup) and the digest in `specs/hero-section/references/design-notes.md` (line 326, page shell at lines 304–312). The footer is the last element of the page shell, rendered outside `<main>`.
 
-Hard constraints from the harness: Astro 7 + strict TypeScript, zero-JS footer, plain CSS with the existing custom properties (no Tailwind), no icon font, no new dependencies, every requirement traceable to a Vitest test. Human decisions: location line `Alicante, España (CET / UTC+1)`; only the email link ships (no GitHub/X/LinkedIn and no dot separators) as a `mailto:` to the shared `CONTACT_EMAIL`; the identity block, role and `© 2025` copyright follow the mockup; the stale contact-section footer exclusion is superseded with a dated amendment.
+Hard constraints from the harness: Astro 7 + strict TypeScript, zero-JS footer, plain CSS with the existing custom properties (no Tailwind), no icon font, no new dependencies, every requirement traceable to a Vitest test. Human decisions: location line `Alicante, España (CET / UTC+1)`; only the email link ships (no GitHub/X/LinkedIn and no dot separators) as a `mailto:` to the shared `CONTACT_EMAIL`; the identity block, role and `© 2025` copyright follow the mockup (copyright year superseded 2026-10-01: the human ordered `© 2026`; see the amendment in `specs/footer-section/requirements.md`); the stale contact-section footer exclusion is superseded with a dated amendment.
 
 The feature mirrors the `contact-section` architecture: a presentational component with scoped styles and no client script, a layout that owns the page shell, and the existing test conventions (Container API render + source CSS assertions). It adds no data collection and no page data.
 
@@ -21,7 +21,7 @@ The feature mirrors the `contact-section` architecture: a presentational compone
 9. `specs/contact-section/requirements.md` gets a dated amendment superseding only the footer clause of R41; `tests/contact-section.test.ts > omits_excluded_sections` flips from "no `<footer>`" to "exactly one `<footer>`" while keeping the no-`<nav>` and no-canvas/shader assertions.
 10. `tests/index.test.ts > ships_only_clipboard_enhancement` extends its page-source scan to `components/FooterSection.astro`; the page script budget stays at two bundled clipboard scripts.
 11. No global CSS change, no new token, no `@keyframes`, no suppressed focus outline, no dependency change.
-12. The copyright text keeps the mockup's `© 2025` verbatim; the year observation is recorded only in `progress/current.md`.
+12. The copyright text keeps the mockup's `© 2025` verbatim; the year observation is recorded only in `progress/current.md`. **Superseded 2026-10-01 (human order):** the effective design contract is `© 2026 Carlos Olcina. Todos los derechos reservados.` (static text, no dynamic year); see the amendment in `specs/footer-section/requirements.md`.
 
 ## 3. Files
 
@@ -52,7 +52,7 @@ const SCHEDULE_ICON_PATH =
       <span class="footer__name">Carlos Olcina</span>
       <p class="footer__role">Ingeniero Senior Full-Stack y Sistemas de IA</p>
       <p class="footer__copyright">
-        © 2025 Carlos Olcina. Todos los derechos reservados.
+        © 2026 Carlos Olcina. Todos los derechos reservados.
       </p>
     </div>
     <div class="footer__meta">
@@ -385,20 +385,20 @@ Test names and coverage:
 
 ## 9. Rejected alternatives
 
-| Alternative                                                                 | Why rejected                                                                                                                                     |
-| --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Rendering `<FooterSection />` from `src/pages/index.astro`                  | The footer is site chrome outside `<main>`; `BaseLayout` owns the body shell, so the section would have to be duplicated for every future route. |
-| Inlining the footer markup directly in `BaseLayout.astro`                   | `docs/architecture.md` keeps reusable UI in `src/components/`; a component is isolated, testable and consistent with every other section.        |
-| Keeping the mockup's GitHub / X / LinkedIn links and dot separators         | Explicit human decision: only the email ships, to avoid placeholder social links.                                                                |
-| Keeping the mockup's `<div class="flex items-center gap-4">` social wrapper | With a single child it adds nothing; the anchor sits directly in `.footer__meta` (YAGNI).                                                        |
-| Keeping `València, España (CET / UTC+1)`                                    | The human lives in Alicante; the location must be accurate.                                                                                      |
-| Porting the `material-symbols-outlined` font for `schedule`                 | External request and repo precedent: exact inline SVG paths, never an icon font.                                                                 |
-| Adding any client JavaScript (menu, year, copy)                             | Zero-JS guardrail; the footer is static and the email is a plain `mailto:`.                                                                      |
-| Reusing `animate-fade-in-up` / `animation-delay-*` for the footer           | The mockup footer has no entrance animation; adding one is speculative and would change the page choreography.                                   |
-| New global CSS rules or design tokens                                       | Every value maps to an existing token or is a one-off layout value; scoped styles keep the global build small.                                   |
-| `outline: none` on the email link focus                                     | Forbidden by `tests/global-styles.test.ts`; the native focus outline is preserved.                                                               |
-| Updating the copyright year to 2026                                         | Explicit human instruction to keep `© 2025` verbatim; the observation lives only in `progress/current.md`.                                       |
-| Duplicating the email literal in the footer                                 | Violates the single-occurrence rule (contact-section R11/R12) enforced by `tests/clipboard.test.ts`.                                             |
+| Alternative                                                                 | Why rejected                                                                                                                                                                                                                                     |
+| --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Rendering `<FooterSection />` from `src/pages/index.astro`                  | The footer is site chrome outside `<main>`; `BaseLayout` owns the body shell, so the section would have to be duplicated for every future route.                                                                                                 |
+| Inlining the footer markup directly in `BaseLayout.astro`                   | `docs/architecture.md` keeps reusable UI in `src/components/`; a component is isolated, testable and consistent with every other section.                                                                                                        |
+| Keeping the mockup's GitHub / X / LinkedIn links and dot separators         | Explicit human decision: only the email ships, to avoid placeholder social links.                                                                                                                                                                |
+| Keeping the mockup's `<div class="flex items-center gap-4">` social wrapper | With a single child it adds nothing; the anchor sits directly in `.footer__meta` (YAGNI).                                                                                                                                                        |
+| Keeping `València, España (CET / UTC+1)`                                    | The human lives in Alicante; the location must be accurate.                                                                                                                                                                                      |
+| Porting the `material-symbols-outlined` font for `schedule`                 | External request and repo precedent: exact inline SVG paths, never an icon font.                                                                                                                                                                 |
+| Adding any client JavaScript (menu, year, copy)                             | Zero-JS guardrail; the footer is static and the email is a plain `mailto:`.                                                                                                                                                                      |
+| Reusing `animate-fade-in-up` / `animation-delay-*` for the footer           | The mockup footer has no entrance animation; adding one is speculative and would change the page choreography.                                                                                                                                   |
+| New global CSS rules or design tokens                                       | Every value maps to an existing token or is a one-off layout value; scoped styles keep the global build small.                                                                                                                                   |
+| `outline: none` on the email link focus                                     | Forbidden by `tests/global-styles.test.ts`; the native focus outline is preserved.                                                                                                                                                               |
+| Updating the copyright year to 2026                                         | Explicit human instruction to keep `© 2025` verbatim; the observation lives only in `progress/current.md`. **Superseded 2026-10-01 (human order):** the copyright year is now 2026; see the amendment in `specs/footer-section/requirements.md`. |
+| Duplicating the email literal in the footer                                 | Violates the single-occurrence rule (contact-section R11/R12) enforced by `tests/clipboard.test.ts`.                                                                                                                                             |
 
 ## 10. Out of scope / future work
 
@@ -408,7 +408,7 @@ Test names and coverage:
 - Form/message logic (contact feature) and any footer interactivity.
 - i18n; the footer copy is Spanish like the rest of the page.
 - Any new dependency (icon set, UI framework, CSS tooling).
-- Copyright year update (kept verbatim as instructed).
+- Copyright year update (kept verbatim as instructed). **Superseded 2026-10-01 (human order):** the copyright year is now 2026; see the amendment in `specs/footer-section/requirements.md`.
 
 ## 11. Risks
 
